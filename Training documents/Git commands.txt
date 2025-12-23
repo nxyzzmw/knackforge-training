@@ -1,0 +1,54 @@
+Git Commands
+
+it config – Identify Yourself (One-time setup)
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+
+git init – Start Tracking a Project
+
+git status – Your Most Used Command
+
+git add – Stage Changes
+git add .
+git add <file-name>
+
+git commit – Save Your Work
+git commit -m "meaningful message"
+
+git clone– Get Project from GitHub
+git clone <repo-url>
+
+git branch – See Your Branches
+
+git checkout -b / git switch – Work Safely
+git checkout -b feature-login
+git switch main
+
+git push – Upload Your Work
+git push origin branch-name
+
+git pull – Stay Updated
+
+git log / git show – See History
+git log --oneline
+git show
+
+git stash – Temporary Save
+git stash
+git stash pop
+
+git diff – See Changes Before Commit
+git diff
+
+git revert – Safely Undo a Commit
+git revert <commit-id>
+
+git rm – Delete Files Properly
+git rm file.txt
+git rm -r folder/
+
+git remote -v – Know Where Your Code Lives
+
+git merge – Combine Branches
+git merge feature-branch
+

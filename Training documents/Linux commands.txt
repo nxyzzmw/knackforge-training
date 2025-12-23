@@ -1,0 +1,149 @@
+Linux commands
+Key folders:
+| Folder  | Purpose                       |
+| ------- | ----------------------------- |
+| `/`     | Root (everything starts here) |
+| `/home` | User files (`/home/nayeem`)   |
+| `/etc`  | Configuration files           |
+| `/var`  | Logs, databases, server data  |
+| `/usr`  | Installed software            |
+| `/bin`  | Essential commands            |
+| `/opt`  | Optional apps (Node, tools)   |
+| `/tmp`  | Temporary files               |
+
+
+Common essential commands inside /bin:
+| Command | Purpose                |
+| ------- | ---------------------- |
+| `ls`    | List files             |
+| `cp`    | Copy files             |
+| `mv`    | Move / rename files    |
+| `rm`    | Delete files           |
+| `cat`   | View file contents     |
+| `echo`  | Print text             |
+| `pwd`   | Show current directory |
+| `mkdir` | Create directory       |
+| `rmdir` | Remove directory       |
+| `chmod` | Change permissions     |
+| `chown` | Change ownership       |
+| `bash`  | Shell                  |
+| `sh`    | Basic shell            |
+| `grep`  | Search text            |
+| `sed`   | Stream editor          |
+| `awk`   | Text processing        |
+
+TERMINAL & NAVIGATION
+pwd        # show current directory
+ls         # list files
+ls -la     # detailed list (hidden files too)
+cd folder  # move into folder
+cd ..      # go back
+cd ~       # go to home
+clear      # clean terminal
+
+FILE & FOLDER OPERATIONS
+pwd                 # current directory
+ls                  # list files
+ls -l               # long list
+ls -la              # include hidden files
+cd folder            # go into folder
+cd ..               # back
+cd ~                # home
+cd /                # root
+clear                # clear terminal
+history              # command history
+
+
+| `rm file`       | Deletes a file permanently without confirmation                         |
+| `rm folder`     | Invalid command; cannot delete a directory without options              |
+| `rm -i file`    | Deletes a file after asking for user confirmation                       |
+| `rm -r folder`  | Recursively deletes a directory and all its contents                    |
+| `rm -ri folder` | Recursively deletes a directory with confirmation for each item         |
+| `rm -rf folder` | Forcefully deletes a directory and its contents without confirmation |
+
+
+VIEW & EDIT FILES
+cat file.txt
+less file.txt
+more file.txt
+head file.txt
+tail file.txt
+tail -f logs.txt     # live logs
+nano file.txt
+vim file.txt
+code file.txt        # VS Code
+
+SEARCH & FILTER
+grep "error" file.txt
+grep -r "PORT" .
+find . -name "*.js"
+locate package.json
+which node
+whereis node
+
+
+FILE PERMISSIONS & OWNERSHIP
+ls -l
+chmod 777 file
+chmod 755 script.sh
+chmod +x script.sh
+chown user:user file
+sudo chown -R user:user folder
+
+
+SUDO & USERS
+sudo command
+whoami
+who
+id
+groups
+adduser username
+passwd username
+
+permission meaning:
+
+r → read
+
+w → write
+
+x → execute
+-rwxrxxrwx
+file , owner, group, other user
+
+| Number | Meaning |
+| ------ | ------- |
+| 0      | ---     |
+| 1      | --x     |
+| 2      | -w-     |
+| 3      | -wx     |
+| 4      | r--     |
+| 5      | r-x     |
+| 6      | rw-     |
+| 7      | rwx     |
+
+
+System Monitoring & Processes
+| Command     | What it is                  | Why you need it                                                                   |
+| ----------- | --------------------------- | --------------------------------------------------------------------------------- |
+| `df`        | Disk free utility           | Check available disk space to avoid crashes, deployment failures, or build errors |
+| `du`        | Disk usage utility          | Find which folder or project is consuming more space                              |
+| `top`       | Real-time process monitor   | Monitor CPU and RAM usage when your app or server becomes slow                    |
+| `ps`        | Process status              | View running processes and get process IDs (PIDs)                                 |
+| `kill`      | Process termination command | Stop frozen apps, stuck servers, or wrong processes using PID                     |
+| `systemctl` | Service control manager     | Start, stop, restart backend services (Node, Nginx, Docker, etc.)                 |
+| `history`   | Command history tracker     | Reuse previous commands and avoid retyping                                        |
+| `man`       | Manual pages viewer         | Learn how any Linux command works without internet                                |
+
+
+Networking
+| Command    | What it is                       | Why you need it                                                                   |
+| ---------- | -------------------------------- | --------------------------------------------------------------------------------- |
+| `hostname` | System hostname viewer           | Identify which server or machine you are connected to (very useful in production) |
+| `ping`     | Network connectivity tester      | Check whether a server, API, or domain is reachable                               |
+| `curl`     | Data transfer tool               | Test REST APIs, check responses, headers, auth, and endpoints                     |
+| `wget`     | File download utility            | Download files, builds, or resources directly from the terminal                   |
+| `ip`       | Network configuration tool       | View IP address, interfaces, and troubleshoot network issues                      |
+| `netstat`  | Network statistics tool          | Check which ports are open and which services are listening                       |
+| `scp`      | Secure copy protocol             | Upload or download files between local machine and server                         |
+| `rsync`    | Remote file synchronization tool | Deploy projects, sync folders efficiently, and update servers                     |
+
