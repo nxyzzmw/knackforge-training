@@ -1,24 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>example</title>
-</head>
-<body>
-    <mark>hey</mark><p>hi</p> <sup>nayeem</sup>
+    <!-- ===== META INFORMATION ===== -->
+    <meta charset="UTF-8"> <!-- Character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive -->
+    <meta name="description" content="Complete HTML tags example">
+    <title>HTML All Tags Example</title>
+
+    <!-- ===== INTERNAL CSS ===== -->
     <style>
-  mark {
-    background-color: lightgreen;
-    color: black;
-  }
-</style>
-    <hr>
-    <p id = "top"></p><img src="/home/mohamednayeemullah@knackforge.com/Pictures/rwx.png" width="100" height="100" align="left">
-    <input type="radio" name="first name">
-    <input type="radio" name="first name">
-   <p><input type="submit" value="click me"></p>
-   <input type="text" placeholder="name">
-    <p><a href="#top" > click here to go back</a></p>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        mark {
+            background-color: lightgreen;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+<!-- ===== SEMANTIC HEADER ===== -->
+<header>
+    <h1>HTML Complete Example</h1>
+    <p>This page demonstrates most HTML tags</p>
+</header>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+    <a href="#text">Text</a> |
+    <a href="#media">Media</a> |
+    <a href="#form">Form</a> |
+    <a href="#table">Table</a>
+</nav>
+
+<hr>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+
+<!-- ===== TEXT TAGS ===== -->
+<section id="text">
+    <h2>Text & Content Tags</h2>
+
+    <p>This is a <b>bold</b>, <i>italic</i>, <strong>important</strong>, and <em>emphasized</em> text.</p>
+
+    <p>Line break example<br>Second line</p>
+
+    <mark>Highlighted text</mark>
+    <sup>Superscript</sup>
+    <sub>Subscript</sub>
+</section>
+
+<hr>
+
+<!-- ===== LISTS ===== -->
+<section>
+    <h2>Lists</h2>
+
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+
+    <ol>
+        <li>Frontend</li>
+        <li>Backend</li>
+        <li>Database</li>
+    </ol>
+</section>
+
+<hr>
+
+<!-- ===== LINKS & IMAGES ===== -->
+<section>
+    <h2>Links & Images</h2>
+
+    <a href="https://developer.mozilla.org" target="_blank">Visit MDN</a><br><br>
+
+    <img src="fox.jpeg"
+         alt="Sample image"
+         width="150"
+         height="150">
+</section>
+
+<hr>
+
+<!-- ===== MEDIA ===== -->
+<section id="media">
+    <h2>Media</h2>
+
+    <!-- AUDIO -->
+    <audio controls>
+        <source src="audio.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <br><br>
+
+    <!-- VIDEO -->
+    <video  width="300" controls>
+        <source src="video.mp4" type="video/mp4" >
+        Your browser does not support video.
+    </video>
+
+    <br><br>
+
+    <!-- IFRAME -->
+    <iframe width="300" height="200"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ">
+    </iframe>
+</section>
+
+<hr>
+
+<!-- ===== FORM ===== -->
+<section id="form">
+    <h2>Form Elements</h2>
+
+    <form>
+        <!-- TEXT INPUT -->
+        <label>Name:</label>
+        <input type="text" placeholder="Enter name"><br><br>
+
+        <!-- EMAIL -->
+        <label>Email:</label>
+        <input type="email"><br><br>
+
+        <!-- PASSWORD -->
+        <label>Password:</label>
+        <input type="password"><br><br>
+
+        <!-- RADIO -->
+        <label>Gender:</label>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female<br><br>
+
+        <!-- CHECKBOX -->
+        <label id ="jana">Skills:</label>
+        <input type="checkbox"> HTML
+        <input type="checkbox"> CSS
+        <input type="checkbox"> JS<br><br>
+
+        <!-- DROPDOWN -->
+        <label>Country:</label>
+        <select>
+            <option>India</option>
+            <option>USA</option>
+            <option>UK</option>
+        </select><br><br>
+
+        <!-- TEXTAREA -->
+        <textarea rows="4" cols="30" placeholder="Enter message"></textarea><br><br>
+
+        <!-- SUBMIT -->
+        <input type="submit" value="Submit">
+        <button type="reset">Reset</button>
+    </form>
+</section>
+
+<hr>
+
+<!-- ===== TABLE ===== -->
+<section id="table">
+    <h2>Table</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+        </tr>
+        <tr>
+            <td>Nayeem</td>
+            <td>Full Stack Developer</td>
+        </tr>
+        <tr>
+            <td>Alex</td>
+            <td>Designer</td>
+        </tr>
+    </table>
+</section>
+
+</main>
+
+<hr>
+
+<!-- ===== ASIDE ===== -->
+<aside>
+    <p>This is a sidebar content</p>
+</aside>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>&copy; 2025 HTML Practice</p>
+</footer>
+
 </body>
 </html>
