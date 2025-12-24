@@ -1,0 +1,93 @@
+HTML
+Core Structure
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example</title>
+</head>
+<body>
+</body>
+</html>
+
+Core HTML Tags
+<html>        → Root of the HTML document
+<head>        → Meta info (title, links)
+<title>       → Page title
+<body>        → Visible content
+
+Text & Content Tags
+<h1> to <h6>   → Headings
+<p>            → Paragraph
+<br>           → Line break
+<hr>           → Horizontal line
+<b>            → Bold text
+<i>            → Italic text
+<strong>       → Important text
+<em>           → Emphasized text
+
+Links & Media
+<a href="">    → Hyperlink
+<img src="">   → Image
+
+Lists
+<ul>           → Unordered list
+<ol>           → Ordered list
+<li>           → List item
+
+Forms
+<form>         → Form container
+<input>        → User input
+<textarea>     → Multi-line input
+<button>       → Button
+<label>        → Input label
+
+Input Types
+type="text"
+type="email"
+type="password"
+type="number"
+type="radio"
+type="checkbox"
+type="submit"
+
+Semantic HTML
+<header>       → Top section
+<nav>          → Navigation bar
+<main>         → Main content
+<section>      → Page section
+<article>     → Independent content
+<aside>        → Sidebar
+<footer>       → Bottom section
+
+Tables
+<table>
+<tr>           → Table row
+<th>           → Header cell
+<td>           → Data cell
+
+Media
+<video>
+<audio>
+<iframe>       → Embed content (YouTube, Maps)
+
+ADVANCED HTML
+<meta>         → SEO, viewport
+<link>         → CSS linking
+<script>       → JS linking
+
+Accessibility
+alt=""         → Image accessibility
+aria-label     → Screen readers
+
+
+
+
+
+
+
+
+
+
+
+
+
