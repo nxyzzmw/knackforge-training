@@ -1,0 +1,77 @@
+CSS
+Ways to apply CSS
+Inline
+Internal
+External   ← REAL-TIME standard
+
+Selectors
+element       → p {}
+.class         → .box {}
+#id            → #header {}
+*              → Universal selector
+
+Basic Properties
+color
+background-color
+font-size
+font-family
+text-align
+width
+height
+
+Box Model
+margin
+padding
+border
+
+Display & Position
+display: block | inline | inline-block | none
+position: relative | absolute | fixed | sticky
+top, right, bottom, left
+
+Flexbox
+display: flex
+justify-content
+align-items
+flex-direction
+flex-wrap
+
+Background & Text
+background-image
+background-size
+line-height
+letter-spacing
+text-transform
+
+Pseudo-classes
+:hover
+:active
+:focus
+:nth-child()
+
+CSS Grid
+display: grid
+grid-template-columns
+grid-gap
+
+Responsive Design
+@media (max-width: 768px)
+
+Transitions & Animations
+transition
+transform
+@keyframes
+animation
+
+Modern CSS
+CSS variables (--main-color)
+overflow
+z-index
+
+
+
+
+
+
+
+
