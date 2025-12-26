@@ -1,0 +1,104 @@
+Bootstrap
+1.Layout System
+Containers
+<div class="container"></div>
+<div class="container-fluid"></div>
+
+Grid (row & col)
+Used for page structure
+<div class="row">
+  <div class="col-md-6">Left</div>
+  <div class="col-md-6">Right</div>
+</div>
+Real-time use
+
+Dashboards
+Forms layout
+Product cards
+Admin panels
+
+2.Navbar
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+Used for
+Login / Logout
+Profile dropdown
+Routing (React / Spring / Node apps)
+
+3.Forms
+<input class="form-control" type="text">
+<button class="btn btn-primary">Submit</button>
+
+Used in
+Login / Signup
+CRUD operations
+Search filters
+Admin forms
+
+4.buttons
+<button class="btn btn-success">Save</button>
+<button class="btn btn-danger">Delete</button>
+<button class="btn btn-warning">Update</button>
+
+Real-time usage
+API triggers
+Submit forms
+Confirm actions
+
+5.Cards
+<div class="card">
+  <div class="card-body">Content</div>
+</div>
+
+Used for
+Product listings
+Blog posts
+Profile info
+Dashboard widgets
+
+6.Modals
+
+Used for
+Confirm delete
+Edit popup
+Login modal
+Alerts without page reload
+
+7.Alerts & Toasts
+<div class="alert alert-success">Saved successfully</div>
+
+Backend response messages
+API success
+API error
+Validation messages
+
+8.Tables
+<table class="table table-striped">
+
+Used in
+Admin panels
+Reports
+User lists
+Logs
+
+9.Utilities
+d-flex
+justify-content-center
+align-items-center
+text-center
+mt-3 p-2
+
+Used daily
+Alignment
+Spacing
+Responsive fixes
+Quick UI changes
+
+10.Responsive Helpers
+d-none d-md-block
+col-sm-12 col-lg-4
+
+Used for
+Mobile vs desktop views
+Conditional UI rendering
+
