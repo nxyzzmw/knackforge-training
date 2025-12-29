@@ -64,11 +64,11 @@ img {
 }
 
 .img-fluid {
-  width: 50%;
   border-radius: 20px;
-  box-shadow: 5px 5px 15px #333;
-  width: 100dvh;
-  height: 100vdh;
+  box-shadow: 0px 0px 30px #090909;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* cards */
@@ -76,6 +76,17 @@ img {
   background-color: #f0ede4;
   font-weight: bold;
   box-shadow: 0 0 15px #000000;
+  min-height: 100%;
+  transition: 0.1s ease-in-out;
+}
+.card:hover{
+  transform: translate(0,-20px);
+}
+.card-img-top {
+  height: 200px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*contact-form*/
@@ -89,6 +100,18 @@ img {
   width: 165px;
   padding-left: 5px;
   color: #757171;
+}
+
+/*service-form-submit-button*/
+.form-home:has(select:invalid) button {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.form-home:has(select:valid) button {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 /*buttons*/
@@ -114,4 +137,3 @@ footer {
   background-color: #1b2632;
   margin-top: auto;
 }
-

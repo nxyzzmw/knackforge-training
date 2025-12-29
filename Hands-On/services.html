@@ -56,11 +56,20 @@
         </div>
         <div class="col-12 col-md-6">
           <label class="form-label visually-hidden" for="serviceSelect">Category</label>
-          <select id="serviceSelect" class="form-select mb-3" aria-label="Select The Category">
-            <option selected>Select The Category</option>
-            <option value="1">Web Development</option>
-            <option value="2">App Development</option>
-            <option value="3">UI/UX Design</option>
+          <select id="serviceSelect" required class="form-select mb-3" aria-label="Select The Category">
+            <option value="Select The Category" disabled selected>Select The Category</option>
+            <option value="Web Development">Web Development</option>
+            <option value="App Development">App Development</option>
+            <option value="UI/UX Design">UI/UX Design</option>
+            <option value="IT Consulting">IT Consulting</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Data Analytics &amp; Business Intelligence">Data Analytics &amp; Business Intelligence</option>
+            <option value="Software Testing &amp; Quality Assurance (QA)">Software Testing &amp; Quality Assurance (QA)</option>
+            <option value="Devops">Devops</option>
+            <option value="IT Support &amp; Manage">IT Support &amp; Manage</option>
+            <option value="Front End">Front End</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Finance">Finance</option>
           </select>
         </div>
         <div class="col-12">
@@ -70,7 +79,7 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <button type="button" class="btn btn-primary px-5" onclick="store()">
+          <button type="submit" class="btn btn-primary px-5" onclick="store()">
             Submit
           </button>
         </div>
