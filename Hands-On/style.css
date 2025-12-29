@@ -1,10 +1,14 @@
 * {
   box-sizing: border-box;
   padding: 0;
+  margin: 0;
+      font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
-  background-color: #e3d6c5;
+  background-color: #f5f5f5;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
@@ -12,20 +16,21 @@ body {
 }
 /*logo & brand*/
 header {
-  background-color: #1b2632;
+  background-color: #000000;
+  
 }
 
 .fs-3 {
-  color: #ffb162;
+  color: white;
 }
 
 img {
-  filter: sepia(50%) saturate(5) brightness(1);
+  filter: none;
 }
 
 /*nav toggler*/
 .navbar-toggler {
-  background-color: #a35139;
+  background-color: #0066cc;
 }
 
 .navbar-toggler-icon {
@@ -42,20 +47,24 @@ img {
 
 /*nav bar*/
 .nav-pills .nav-link.active {
-  background-color: #f0ede4;
+  background-color: #0066cc;
+  color: white !important;
+}
+.nav-link{
+  color: white !important;
 }
 
 /*home-content*/
 .home {
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: #788990;
+  background-color: #5ca5ee;
   border-radius: 10px;
   display: flexbox;
   padding: 20px;
-  color: #f0ede4;
+  color: white;
   font-weight: bold;
-  box-shadow: 0 0 15px #000000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .text-justify {
@@ -73,8 +82,8 @@ img {
 
 /* cards */
 .card {
-  background-color: #f0ede4;
-  font-weight: bold;
+  background-color:white;
+ 
   box-shadow: 0 0 15px #000000;
   min-height: 100%;
   transition: 0.1s ease-in-out;
@@ -102,30 +111,17 @@ img {
   color: #757171;
 }
 
-/*service-form-submit-button*/
-.form-home:has(select:invalid) button {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-.form-home:has(select:valid) button {
-  opacity: 1;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
 /*buttons*/
 .btn {
-  background-color: #a35139;
+  background-color: #0066cc;
   color: white;
+  border-color: #0066cc;
   font-weight: bold;
-  border-color: #ffb162;
 }
 .btn:hover {
-  background-color: #ffb162;
-  color: #1b2632;
-  font-weight: bold;
-  border-color: #a35139;
+  background-color: #0052a3;
+  color: white;
+  border-color: #0052a3;
 }
 
 /*footer*/
