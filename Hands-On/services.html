@@ -113,35 +113,59 @@
     </script>
   <!--table-data-script-->
   <script>
-    let count = 0;
-    window.onload = function () {
-  let savedData = localStorage.getItem("services");
+ let services = [];
+
+// Load data when page loads
+window.onload = function () {
+  const savedData = localStorage.getItem("services");
   if (savedData) {
-    document.getElementById("result").innerHTML = savedData;
-    count = document.querySelectorAll("#result tr").length;
+    services = JSON.parse(savedData); // JSON → JS
+    renderTable();
   }
 };
 
-    function store() {
-      const result = document.getElementById("result");
+// Store new entry
+function store() {
+  const name = document.getElementById("name").value;
+  const category = document.getElementById("serviceSelect").value;
+  const description = document.getElementById("description").value;
 
-      count++;
+  if (!name || !category || !description) {
+    alert("Please fill all fields");
+    return;
+  }
 
-      let row = `
-    <tr>
-      <td>${count}</td>
-      <td>${document.getElementById("name").value}</td>
-      <td>${document.getElementById("serviceSelect").value}</td>
-      <td>${document.getElementById("description").value}</td>
-    </tr>
-  `;
-      result.innerHTML += row;
-       localStorage.setItem("services", result.innerHTML);
+  // Add data to array
+  services.push({ name, category, description });
 
-      document.getElementById("name").value = "";
-      document.getElementById("description").value = "";
-      document.getElementById("serviceSelect").value = "Select The Category";
-    }
+  // Save to localStorage
+  localStorage.setItem("services", JSON.stringify(services));
+
+  // Update table
+  renderTable();
+
+  // Clear inputs
+  document.getElementById("name").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("serviceSelect").selectedIndex = 0;
+}
+
+// Render table from JSON
+function renderTable() {
+  const result = document.getElementById("result");
+  result.innerHTML = "";
+
+  services.forEach((service, index) => {
+    result.innerHTML += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${service.name}</td>
+        <td>${service.category}</td>
+        <td>${service.description}</td>
+      </tr>
+    `;
+  });
+}
   </script>
 
 
