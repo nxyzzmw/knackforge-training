@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #cardContainer {
+ 
+  gap: 20px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card button {
+  margin-top: 10px;
+}
+
+</style>
+<body>
+<div id="cardContainer">
+<h2>whats jana's real name?</h2>
+<input required type="text" id="input"> 
+<button id="id">check</button>
+<p id="p"></p>
+
+
+<p>fill the form to display it</p>
+<input id="name" type="text"  placeholder="name">
+<input id="hobby" type="text" placeholder="hobby">
+<button id="submit">Submit</button>
+<div id="form"></div>
+
+<p>create an array using for loop</p>
+<input type="number" id="length" placeholder="Enter length">
+<input type="number" id="arr" placeholder="Enter value">
+<button type="button" id="s">Submit</button>
+<div id="array"></div>
+
+
+<p>create an array using while loop</p>
+<input type="number" id="length1" placeholder="Ente">
+<input type="number" id="arr1" placeholder="Enter value">
+<button type="button" id="su">Submit</button>
+<div id="array1"></div>
+
+<p id="guessText">Think of a number between 1 and 100</p>
+
+<button id="start">Start</button>
+<button id="lower">Lower</button>
+<button id="higher">Higher</button>
+<button id="correct">Correct</button>
+
+<p id="result"></p>
+</div>
+
+
+<script>
+let min = 1;
+let max = 100;
+let guess;
+let attempts = 0;
+
+function makeGuess() {
+  guess = Math.floor((min + max) / 2);
+  attempts++;
+  document.getElementById("guessText").innerText =
+    `Is your number ${guess}?`;
+}
+
+document.getElementById("start").addEventListener("click", ()=>{
+  min = 1;
+  max = 100;
+  attempts = 0;
+  makeGuess();
+});
+
+document.getElementById("lower").addEventListener("click", function () {
+  max = guess - 1;
+  makeGuess();
+});
+
+
+document.getElementById("higher").addEventListener("click", function () {
+  min = guess + 1;
+  makeGuess();
+});
+
+document.getElementById("correct").addEventListener("click", function () {
+  document.getElementById("result").innerText =
+    `I guessed it! Your number was ${guess} in ${attempts} attempts.`;
+});
+
+
+
+
+
+
+    document.getElementById("submit").addEventListener("click", function(){
+        var b= new Array();
+        var name=document.getElementById("name").value;
+        var hobby=document.getElementById("hobby").value;
+        b.push(name);
+        b.push(hobby);
+        document.getElementById("form").innerHTML="Name: "+b[0]+" Hobby: "+b[1];
+        document.getElementById("name").value="";
+        document.getElementById("hobby").value="";
+    });
+var x="jana";
+document.getElementById("id").addEventListener("click", function(){
+    var y=document.getElementById("input").value;
+    document.getElementById("input").value = "";
+    if(y===x){
+        alert("correct answer");
+    }
+    else{
+        alert("wrong answer");
+    }
+});
+var a=["nayeem","jana","nirmal","lokesh"];
+for(var i=0;i<a.length;i++){
+document.getElementById("p").innerHTML+=" "+a[i];
+}
+
+let ar = [];
+
+document.getElementById("s").addEventListener("click", function (e) {
+    
+  let n = Number(document.getElementById("length").value);
+  let value = document.getElementById("arr").value;
+
+  if (value === "" || ar.length >= n) return;
+
+  ar.push(value);
+
+  document.getElementById("array").innerHTML = "";
+
+  for (let j = 0; j < ar.length; j++) {
+    document.getElementById("array").innerHTML += "<p>" + ar[j] + "</p>";
+  }
+
+  document.getElementById("arr").value = "";
+});
+
+let ar1 = [];
+
+document.getElementById("su").addEventListener("click", function (e) {
+    
+  let n = Number(document.getElementById("length1").value);
+  let value = document.getElementById("arr1").value;
+
+  if (value === "" || ar1.length >= n) return;
+
+  ar1.push(value);
+
+  document.getElementById("array1").innerHTML = "";
+
+  var j=0;
+  while(j<ar1.length){
+    document.getElementById("array1").innerHTML += "<p>" + ar1[j] + "</p>";
+    j++;
+  }
+  document.getElementById("arr1").value = "";
+});
+
+
+
+
+
+    const services = [
+  {
+    title: "Web Development",
+    description: "We build responsive websites",
+    color: "#e3f2fd"
+  },
+  {
+    title: "App Development",
+    description: "Android & iOS apps",
+    color: "#fce4ec"
+  },
+  {
+    title: "UI/UX Design",
+    description: "Clean and modern designs",
+    color: "#e8f5e9"
+  },
+    {
+    title: "Devops",
+    description: "this is devops",
+    color: "#e8f5e9"
+  }
+  
+];
+
+const container = document.getElementById("cardContainer");
+
+services.forEach(service => {
+  const card = document.createElement("div");
+
+  card.classList.add("card");
+  card.style.backgroundColor = service.color;
+
+  card.innerHTML = `
+    <h3>${service.title}</h3>
+    <p>${service.description}</p>
+    <button>View More</button>
+  `;
+
+  container.appendChild(card);
+});
+
+
+</script>
+</body>
+</html>
