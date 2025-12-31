@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoot the Circle</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+
+    .shape {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Shoot the Circle</h1>
+  <p>Score as high as possible in 30 seconds</p>
+
+  <h3 id="timer">Remaining time: 30</h3>
+  <h3 id="result">Your Score: 0</h3>
+
+  <div id="container"></div>
+
+  <script>
+    let timer = 30;
+    let score = 0;
+    let gameOver = false;
+
+    const timerEl = document.getElementById("timer");
+    const scoreEl = document.getElementById("result");
+    const container = document.getElementById("container");
+
+    function createShape() {
+      if (gameOver) return;
+
+      const shape = document.createElement("div");
+
+      const x = Math.random() * 90;
+      const y = Math.random() * 90;
+
+      shape.className = "shape";
+      shape.style.left = x + "%";
+      shape.style.top = y + "%";
+      shape.style.backgroundColor = `rgb(
+        ${Math.floor(Math.random() * 256)},
+        ${Math.floor(Math.random() * 256)},
+        ${Math.floor(Math.random() * 256)}
+      )`;
+
+      const missTimeout = setTimeout(() => {
+        if (!gameOver && shape.parentNode) {
+          shape.remove();
+          createShape();
+        }
+      }, 2000);
+
+      shape.onclick = function () {
+        clearTimeout(missTimeout);
+        score++;
+        scoreEl.innerText = "Your Score: " + score;
+        shape.remove();
+        setTimeout(createShape, Math.random() * 800);
+      };
+
+      container.appendChild(shape);
+    }
+
+   
+    const countdown = setInterval(() => {
+      timer--;
+      timerEl.innerText = "Remaining time: " + timer;
+
+      if (timer <= 0) {
+        gameOver = true;
+        clearInterval(countdown);
+        container.innerHTML = "<h2>Game Over</h2>";
+      }
+    }, 1000);
+
+    
+    createShape();
+  </script>
+
+</body>
+</html>

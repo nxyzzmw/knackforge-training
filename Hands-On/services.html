@@ -103,6 +103,7 @@
       </tbody>
     </table>
   </main>
+    <script src="script.js" ></script>
   <!--footer-->
   <footer>
     © 2025 Company, Inc
@@ -111,62 +112,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
-  <!--table-data-script-->
-  <script>
- let services = [];
-
-// Load data when page loads
-window.onload = function () {
-  const savedData = localStorage.getItem("services");
-  if (savedData) {
-    services = JSON.parse(savedData); // JSON → JS
-    renderTable();
-  }
-};
-
-// Store new entry
-function store() {
-  const name = document.getElementById("name").value;
-  const category = document.getElementById("serviceSelect").value;
-  const description = document.getElementById("description").value;
-
-  if (!name || !category || !description) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  // Add data to array
-  services.push({ name, category, description });
-
-  // Save to localStorage
-  localStorage.setItem("services", JSON.stringify(services));
-
-  // Update table
-  renderTable();
-
-  // Clear inputs
-  document.getElementById("name").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("serviceSelect").selectedIndex = 0;
-}
-
-// Render table from JSON
-function renderTable() {
-  const result = document.getElementById("result");
-  result.innerHTML = "";
-
-  services.forEach((service, index) => {
-    result.innerHTML += `
-      <tr>
-        <td>${index + 1}</td>
-        <td>${service.name}</td>
-        <td>${service.category}</td>
-        <td>${service.description}</td>
-      </tr>
-    `;
-  });
-}
-  </script>
+  
 
 
 </body>

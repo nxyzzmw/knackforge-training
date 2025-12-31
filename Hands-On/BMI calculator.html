@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+</style>
+<body>
+
+<h1>Calculate your BMI</h1>
+
+<div id="bmi">
+  <label>Weight (kg):</label>
+  <input id="we" type="number" placeholder="Enter your weight"><br><br>
+
+  <label>Height (cm):</label>
+  <input id="he" type="number" placeholder="Enter your height"><br><br>
+
+  <button id="sub">Calculate</button>
+
+  <p id="res">Your BMI is:</p>
+</div>
+
+<script>
+ document.getElementById("sub").addEventListener("click", function () {
+  const weight = Number(document.getElementById("we").value);
+  const heightCm = Number(document.getElementById("he").value);
+
+  if (weight <= 0 || heightCm <= 0) {
+    document.getElementById("res").innerText =
+      "Please enter valid values";
+    return;
+  }
+
+  const heightM = heightCm / 100;
+  const bmi = weight / (heightM * heightM);
+
+  let message = "";
+
+  if (bmi < 18.5) {
+    message = "Underweight";
+  } else if (bmi >= 18.5 && bmi <= 24.9) {
+    message = "Healthy";
+  } else if (bmi >= 25 && bmi <= 29.9) {
+    message = "Slightly high";
+  } else if (bmi >= 30 && bmi <= 34.9) {
+    message = "High";
+  } else if (bmi >= 35 && bmi <= 39.9) {
+    message = "Very high";
+  } else {
+    message = "Extremely high";
+  }
+
+  document.getElementById("res").innerText =
+    "Your BMI is: " + bmi.toFixed(1) + " (" + message + ")";
+});
+
+</script>
+
+</body>
+</html>

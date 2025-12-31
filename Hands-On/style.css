@@ -134,3 +134,8 @@ footer {
   background-color: #1b2632;
   margin-top: auto;
 }
+#add{
+   display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
