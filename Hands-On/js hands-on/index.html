@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hands-On</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- NAVBAR  -->
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top sidebar-nav">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="#even-odd">Even/Odd</a>
+                        <a class="nav-link" href="#largest">Largest</a>
+                        <a class="nav-link" href="#factorial">Factorial</a>
+                        <a class="nav-link" href="#countdown">Countdown</a>
+                        <a class="nav-link" href="#string-reverse">String Reverse</a>
+                        <a class="nav-link" href="#multiplication">Multiplication</a>
+                        <a class="nav-link" href="#prime">Prime</a>
+                        <a class="nav-link" href="#form-validation">Form</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+
+        <!--  EVEN / ODD  -->
+        <section class="task-section">
+            <form id="even-odd">
+                <h2>Even or Odd</h2>
+                <input id="evenodd" type="number" placeholder="Enter number" />
+                <br />
+                <button id="sub1" type="submit">Check</button>
+                <h4>Your Answer:</h4>
+                <p id="res1"></p>
+            </form>
+        </section>
+
+        <!-- LARGEST OF THREE -->
+        <section class="task-section">
+            <form id="largest">
+                <h2>Largest of Three Numbers</h2>
+                <input id="large" type="number" placeholder="Enter number" />
+                <br />
+                <button id="save" type="submit">Submit</button>
+                <button id="sub2" type="submit">Check</button>
+                <h4>Your Answer:</h4>
+                <p id="res2"></p>
+            </form>
+        </section>
+
+        <!--  FACTORIAL  -->
+        <section class="task-section">
+            <form id="factorial">
+                <h2>Factorial</h2>
+                <input id="fact" type="number" placeholder="Enter number" />
+                <br />
+                <button id="sub3" type="submit">Check</button>
+                <h4>Your Answer:</h4>
+                <p id="res3"></p>
+            </form>
+        </section>
+
+        <!--  COUNTDOWN  -->
+        <section class="task-section">
+            <form id="countdo">
+                <h2>Countdown Timer</h2>
+                <input id="countdown" type="number" placeholder="Enter number" />
+                <br />
+                <button id="sub4" type="submit">Start</button>
+                <h4>Remaining Time:</h4>
+                <p id="res4"></p>
+            </form>
+        </section>
+
+        <!--  STRING REVERSE  -->
+        <section class="task-section">
+            <form id="string-reverse">
+                <h2>String Reverse</h2>
+                <input id="stringrev" type="text" placeholder="Enter string" />
+                <br />
+                <button id="sub5" type="submit">Reverse</button>
+                <h4>Your Answer:</h4>
+                <p id="res5"></p>
+            </form>
+        </section>
+
+        <!-- MULTIPLICATION  -->
+        <section class="task-section">
+            <form id="multiplication">
+                <h2>Multiplication Table</h2>
+                <input id="multable" type="number" placeholder="Enter number" />
+                <br />
+                <button id="sub6" type="submit">Submit</button>
+                <h4>Your Answer:</h4>
+                <p id="res6"></p>
+            </form>
+        </section>
+
+        <!-- PRIME  -->
+        <section class="task-section">
+            <form id="prime">
+                <h2>Prime Number</h2>
+                <input id="primenum" type="number" placeholder="Enter number" />
+                <br />
+                <button id="sub7" type="submit">Check</button>
+                <h4>Your Answer:</h4>
+                <p id="res7"></p>
+            </form>
+        </section>
+
+        <!--  FORM VALIDATION  -->
+        <section class="task-section">
+  <form id="form-validation">
+    <h2>Form Validation</h2>
+
+    <!-- Row 1 -->
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <input id="firstname" type="text" class="form-control" placeholder="First Name" />
+        <small class="text-danger"></small>
+      </div>
+      <div class="col-12 col-md-6">
+        <input id="secondname" type="text" class="form-control" placeholder="Second Name" />
+        <small class="text-danger"></small>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row g-3 mt-2">
+      <div class="col-12 col-md-6">
+        <input id="username" type="text" class="form-control" placeholder="Username" />
+        <small class="text-danger"></small>
+      </div>
+      <div class="col-12 col-md-6">
+        <input id="password" type="password" class="form-control" placeholder="Password" />
+        <small class="text-danger"></small>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row g-3 mt-2">
+      <div class="col-12 col-md-6">
+        <input id="email" type="email" class="form-control" placeholder="Email" />
+        <small class="text-danger"></small>
+      </div>
+      <div class="col-12 col-md-6">
+        <input id="phone" type="tel" class="form-control" placeholder="Phone" />
+        <small class="text-danger"></small>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row g-3 mt-2">
+      <div class="col-12 col-md-6">
+        <select id="gender" class="form-select">
+          <option disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <small class="text-danger"></small>
+      </div>
+      <div class="col-12 col-md-6">
+        <input id="dob" type="date" class="form-control" />
+        <small class="text-danger"></small>
+      </div>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="row g-3 mt-2">
+      <div class="col-12 col-md-6">
+        <input id="city" type="text" class="form-control" placeholder="City" />
+        <small class="text-danger"></small>
+      </div>
+      <div class="col-12 col-md-6">
+        <input id="state" type="text" class="form-control" placeholder="State" />
+        <small class="text-danger"></small>
+      </div>
+    </div>
+
+    <!-- Row 6 -->
+    <div class="row g-3 mt-2">
+      <div class="col-12">
+        <textarea id="address" class="form-control" placeholder="Address"></textarea>
+        <small class="text-danger"></small>
+      </div>
+    </div>
+
+    <!-- Terms -->
+    <div class="mt-3">
+      <label>
+        <input id="terms" type="checkbox" /> I agree to terms & conditions
+      </label>
+      <small class="text-danger"></small>
+    </div>
+
+    <button id="sub8" type="submit">Submit</button>
+  </form>
+</section>
+
+
+    </div>
+
+    <!-- FOOTER  -->
+    <footer>
+        © Made by Nayeem
+    </footer>
+
+    <!-- Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>

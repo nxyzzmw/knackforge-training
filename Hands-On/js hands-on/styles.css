@@ -1,0 +1,147 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  background-color: #1d88f2;
+}
+.nav-link {
+  color: white;
+  font-weight: bold;
+}
+.navbar-toggler {
+  background-color: white;
+}
+@media (max-width: 991px) {
+  .navbar-nav .nav-link {
+    padding: 10px;
+    margin: 15px;
+    text-align: center;
+  }
+}
+@media (min-width: 992px) {
+  .sidebar-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 220px;
+    flex-direction: column;
+    padding-top: 60px;
+  }
+  .sidebar-nav .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sidebar-nav .nav-link {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0;
+    border-radius: 0;
+  }
+   body {
+    padding-left: 220px;
+  }
+
+
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #0066cc;
+  color: white !important;
+}
+body {
+  position: relative;
+  background-color: #f4f6f8;
+}
+
+/* SECTION CARD  */
+.task-section {
+  text-align: center;
+  background-color: aquamarine;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 60px auto;
+  border: 1px solid grey;
+  width: fit-content;
+  max-width: 90%;
+}
+
+/* HEADINGS & TEXT */
+h2,
+h4,
+p {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* BUTTONS */
+button {
+  margin-top: 20px;
+  padding: 6px 14px;
+  background-color: #1d88f2;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0px 0px 5px black;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+#save {
+  background-color: red;
+  margin-right: 10px;
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* ANSWER BOX */
+p {
+  background-color: white;
+  border-radius: 20px;
+  width: 160px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* INPUTS */
+input,
+select,
+textarea {
+  padding: 6px;
+  margin-top: 10px;
+}
+
+/* PLACEHOLDER */
+::placeholder {
+  padding: 5px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+  padding: 12px;
+  background-color: #1b2632;
+  
+}
