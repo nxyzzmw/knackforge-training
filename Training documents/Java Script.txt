@@ -1,0 +1,211 @@
+Java Script
+
+1. Core Concepts
+
+var, let, const (⚠️ use let/const only)
+
+Data types
+string, number, boolean, null, undefined, object, array
+
+Operators
++ - * / %, === !==, && || !
+
+Conditionals
+if, else, else if, switch
+
+Loops
+for, while, do-while, for...of, for...in
+
+✅ Real-time use: validations, UI logic, looping API data
+
+
+Functions (VERY IMPORTANT)
+
+Used everywhere: frontend, backend, utilities
+
+Types
+function normal() {}
+const arrow = () => {}
+
+
+2.Key Concepts
+
+Parameters & return values
+
+Default parameters
+
+Callback functions
+
+Higher-order functions
+
+✅ Real-time use: event handling, API calls, reusable logic
+
+
+3.Arrays & Objects (MOST USED)
+
+🔥 90% of JS work revolves around this
+
+Array Methods (VERY IMPORTANT)
+map()
+filter()
+reduce()
+forEach()
+find()
+some()
+every()
+includes()
+
+Object Handling
+object.key
+object["key"]
+Object.keys()
+Object.values()
+Object.entries()
+
+Destructuring
+const { name, age } = user
+const [a, b] = arr
+✅ Real-time use: API responses, state management, data rendering
+
+
+4.DOM Manipulation (Frontend Core)
+
+Used in HTML + JS projects
+
+Select Elements
+getElementById
+querySelector
+querySelectorAll
+
+Manipulate DOM
+innerHTML
+textContent
+classList.add/remove/toggle
+style.property
+
+Events
+click
+submit
+change
+keyup
+keydown
+
+
+✅ Real-time use: forms, buttons, modals, validation
+
+
+5.6️⃣ Asynchronous JavaScript (🔥 CRITICAL)
+
+Used for APIs, backend communication
+
+Concepts
+
+Callbacks
+
+Promises
+
+async / await
+
+Fetch API
+fetch(url)
+  .then(res => res.json())
+  .then(data => console.log(data))
+
+const data = await fetch(url)
+
+
+✅ Real-time use: REST APIs, backend data
+
+
+6.5️⃣ Events & Event Handling
+element.addEventListener("click", () => {})
+
+Important
+
+Event object
+
+preventDefault()
+
+stopPropagation()
+
+✅ Real-time use: form submit, dropdowns, modals
+
+
+7.JSON & API Handling
+JSON.stringify()
+JSON.parse()
+
+
+REST API basics
+
+HTTP methods: GET POST PUT DELETE
+
+Status codes: 200 201 400 401 404 500
+
+✅ Real-time use: frontend ↔ backend communication
+
+
+8.Local Storage & Session Storage
+localStorage.setItem()
+localStorage.getItem()
+localStorage.removeItem()
+
+
+✅ Real-time use: auth tokens, saved forms, preferences
+
+
+9.ES6+ Features (MODERN JS)
+
+🔥 Mandatory for interviews & real projects
+
+Arrow functions
+
+Template literals `Hello ${name}`
+
+Spread operator ...
+
+Rest parameters
+
+Optional chaining user?.profile?.name
+
+Nullish coalescing ??
+
+
+10.Error Handling & Debugging
+try {
+} catch (err) {
+}
+
+
+console.log
+
+console.error
+
+Browser DevTools
+
+✅ Real-time use: production bug fixing
+
+
+11.Modules
+export
+import
+
+Used in React, Node, modern JS apps
+
+
+12.JavaScript in Backend (Node.js Basics)
+
+(For full-stack)
+
+Node.js runtime
+
+npm / package.json
+
+Express basics
+
+Middleware concept
+
+Environment variables
+
+✅ Real-time use: APIs, authentication, server logic
+
