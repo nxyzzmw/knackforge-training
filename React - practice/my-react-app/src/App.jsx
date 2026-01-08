@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import { ThemeContext } from "./ThemeContext";
 
 import Home from "./pages/home";
@@ -60,7 +60,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <BrowserRouter>
+      <HashRouter>
 
         <nav className={`navbar navbar-expand-lg ${theme === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-light"}`}>
           <div className="container-fluid">
@@ -236,7 +236,7 @@ function App() {
 
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeContext.Provider>
   );
 }
