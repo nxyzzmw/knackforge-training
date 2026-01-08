@@ -5,17 +5,24 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   function handleSignup(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!username || !password) return;
+  if (!username || !password) return;
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ username, password })
-    );
+  const users = JSON.parse(localStorage.getItem("users")) || {};
 
-    window.location.href = "/login";
+  if (users[username]) {
+    alert("User already exists");
+    return;
   }
+
+  users[username] = password;
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Signup successful. Please login.");
+  window.location.href = "/login";
+}
 
   return (
     <div className="auth">

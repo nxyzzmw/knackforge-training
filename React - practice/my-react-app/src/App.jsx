@@ -8,6 +8,7 @@ import Counter from "./pages/Counter";
 import RandomPage from "./pages/RandomPage";
 import ThemePage from "./pages/ThemePage";
 import Notes from "./pages/Notes";
+import Calculator  from "./pages/Calculator";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -19,7 +20,6 @@ import "./App.css";
 function App() {
   const [theme, setTheme] = useState("light");
   const [items, setItems] = useState(["Apple", "Banana", "Orange"]);
-
   const cardsData = [
     { title: "Web Development" },
     { title: "App Development" },
@@ -56,6 +56,7 @@ function App() {
   function addItem(newItem) {
     setItems([...items, newItem]);
   }
+  
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -65,7 +66,7 @@ function App() {
           <div className="container-fluid">
 
             <Link className="navbar-brand" to="/">
-              MyApp
+              ReactApp
             </Link>
 
             <button
@@ -93,6 +94,10 @@ function App() {
                     </li>
                   </>
                 )}
+                {isLoggedIn &&(<>
+                
+                
+                </>)}
 
                 {isLoggedIn && (
                   <>
@@ -102,7 +107,7 @@ function App() {
                       </span>
                     </li>
 
-                    <li className="nav-item">
+                    <li className="anav-item">
                       <Link className="nav-link" to="/">Home</Link>
                     </li>
 
@@ -128,6 +133,9 @@ function App() {
 
                     <li className="nav-item">
                       <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                    </li>
+                     <li className="nav-item">
+                      <Link className="nav-link" to="/calculator">Calculator</Link>
                     </li>
 
                     <li className="nav-item">
@@ -213,6 +221,15 @@ function App() {
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+               <Route
+            path="/calculator"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Calculator />
               </ProtectedRoute>
             }
           />

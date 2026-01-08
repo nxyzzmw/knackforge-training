@@ -227,6 +227,28 @@ ul.list {
 
 .note-card p span {
   flex: 1;
+  
+}
+.note-card {
+  position: relative;        /* 🔑 anchor for overlay */
+  padding: 16px;
+  min-height: 140px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.note-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.note-card:hover .note-actions {
+  opacity: 1;
 }
 
 /* ========================= */
@@ -234,7 +256,7 @@ ul.list {
 /* ========================= */
 
 .b1,
-.b2 {
+.b2 , .b3{
   display: none;
   border: none;
   cursor: pointer;
@@ -244,7 +266,8 @@ ul.list {
 }
 
 .note-card:hover .b1,
-.note-card:hover .b2 {
+.note-card:hover .b2 , .note-card:hover .b3 {
+
   display: inline-block;
 }
 
@@ -259,6 +282,11 @@ button.b2 {
   background-color: #fde68a !important;
   color: #1f2937 !important;
 }
+button.b3 {
+  background-color: #ccc !important;
+  color: #1f2937 !important;
+}
+
 
 /* ========================= */
 /* THEMES                    */
@@ -334,4 +362,32 @@ button.b2 {
 }
 .dark .navbar-brand{
   color: white;
+}
+.calculator {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.display {
+  background-color: #eaeaea;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.dark .calculator{
+  color: #000;
 }

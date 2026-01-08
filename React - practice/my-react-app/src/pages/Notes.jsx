@@ -1,24 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Note from "../components/Note";
 
 function Notes() {
+  // ✅ Always read user, but DO NOT return before hooks
+  const user = JSON.parse(localStorage.getItem("user"));
+  const username = user?.username || "guest";
+  const storageKey = `notes_${username}`;
+
   const [notes, setNotes] = useState("");
-  const [allNotes, setAllNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState(() => {
+    const savedNotes = localStorage.getItem(storageKey);
+    return savedNotes ? JSON.parse(savedNotes) : [];
+  });
   const [editIndex, setEditIndex] = useState(null);
+
+
+  // 💾 Persist notes on every change
+  useEffect(() => {
+    if (username !== "guest") {
+      localStorage.setItem(storageKey, JSON.stringify(allNotes));
+    }
+  }, [allNotes, storageKey, username]);
 
   function addNote() {
     if (notes.trim() === "") return;
 
-    // ✏️ EDIT MODE
     if (editIndex !== null) {
       const updatedNotes = allNotes.map((note, index) =>
         index === editIndex ? notes : note
       );
       setAllNotes(updatedNotes);
       setEditIndex(null);
-    }
-    // ➕ ADD MODE
-    else {
+    } else {
       setAllNotes([...allNotes, notes]);
     }
 
@@ -26,25 +39,26 @@ function Notes() {
   }
 
   function del(indexToDelete) {
-    const updatedNotes = allNotes.filter(
-      (note, index) => index !== indexToDelete
-    );
-    setAllNotes(updatedNotes);
+    setAllNotes(allNotes.filter((_, index) => index !== indexToDelete));
   }
 
   function edit(indexToEdit) {
-    setNotes(allNotes[indexToEdit]); 
-    setEditIndex(indexToEdit);        
+    setNotes(allNotes[indexToEdit]);
+    setEditIndex(indexToEdit);
   }
-
+function pin(indexToPin) {
+  const pinnedNote = allNotes[indexToPin];
+  const remainingNotes = allNotes.filter((_, i) => i !== indexToPin);
+  setAllNotes([pinnedNote, ...remainingNotes]);
+}
   return (
     <div className="note-page">
-      <h3>Note Tracker</h3>
+      <h3>{username}'s Notes</h3>
 
       <textarea
         placeholder="Write your note here..."
         value={notes}
-        onChange={(e) => setNotes(e.target.value)}
+        onChange={(e) => setNotes(e.target.value)} 
       />
 
       <br />
@@ -52,7 +66,7 @@ function Notes() {
         {editIndex !== null ? "Update Note" : "Add Note"}
       </button>
 
-      <Note notes={allNotes} del={del} edit={edit} />
+      <Note notes={allNotes} del={del} edit={edit}pin={pin}/>
     </div>
   );
 }

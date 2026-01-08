@@ -1,4 +1,4 @@
-function Note({ notes , del,edit }) {
+function Note({ notes , del,edit , pin}) {
 
    
   return (
@@ -8,14 +8,23 @@ function Note({ notes , del,edit }) {
           <div key={index} className="col-12 col-md-6 col-lg-4">
             <div className="note-card">
 <p>
-    
+      <button className="b3"    title="Pin note"
+ onClick={() =>pin(index)}>📍</button>
+
   <span>{note}</span>
                   <button
-                  className="b1"
+                  className="b1"   title="Delete note"
+
                   onClick={() => del(index)}
                 >
 <strong>X</strong></button>
-  <button className="b2"   onClick={() =>edit(index)}>✏️</button>
+<button
+  className="b2"
+  title="Edit note"
+  onClick={() => edit(index)}
+>
+  ✏️
+</button>
 
 
 </p>
