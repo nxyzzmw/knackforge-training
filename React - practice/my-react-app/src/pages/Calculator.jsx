@@ -9,6 +9,11 @@ function Calculator() {
     setDisplay(display === "0" ? num : display + num);
   }
 
+  function handleDecimal() {
+    if (display.includes(".")) return;
+    setDisplay(display + ".");
+  }
+
   function handleOperator(op) {
     setPrevValue(Number(display));
     setOperator(op);
@@ -22,20 +27,11 @@ function Calculator() {
     let result;
 
     switch (operator) {
-      case "+":
-        result = prevValue + current;
-        break;
-      case "-":
-        result = prevValue - current;
-        break;
-      case "*":
-        result = prevValue * current;
-        break;
-      case "/":
-        result = current === 0 ? "Error" : prevValue / current;
-        break;
-      default:
-        return;
+      case "+": result = prevValue + current; break;
+      case "-": result = prevValue - current; break;
+      case "*": result = prevValue * current; break;
+      case "/": result = current === 0 ? "Error" : prevValue / current; break;
+      default: return;
     }
 
     setDisplay(String(result));
@@ -52,7 +48,6 @@ function Calculator() {
   return (
     <div className="calculator">
       <h3>Basic Calculator</h3>
-
       <div className="display">{display}</div>
 
       <div className="buttons">
@@ -60,6 +55,7 @@ function Calculator() {
         <button onClick={() => handleOperator("/")}>÷</button>
         <button onClick={() => handleOperator("*")}>×</button>
         <button onClick={() => handleOperator("-")}>−</button>
+        <button onClick={handleDecimal}>.</button>
 
         <button onClick={() => handleNumber("7")}>7</button>
         <button onClick={() => handleNumber("8")}>8</button>
@@ -74,9 +70,7 @@ function Calculator() {
         <button onClick={() => handleNumber("2")}>2</button>
         <button onClick={() => handleNumber("3")}>3</button>
 
-        <button onClick={() => handleNumber("0")} className="zero">
-          0
-        </button>
+        <button onClick={() => handleNumber("0")} className="zero">0</button>
         <button onClick={calculate}>=</button>
       </div>
     </div>

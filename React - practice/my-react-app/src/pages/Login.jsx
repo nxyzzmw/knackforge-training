@@ -4,20 +4,20 @@ function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-function handleLogin(e) {
-  e.preventDefault();
+  function handleLogin(e) {
+    e.preventDefault();
 
-  const users = JSON.parse(localStorage.getItem("users")) || {};
+    const users = JSON.parse(localStorage.getItem("users")) || {};
 
-  if (users[username] && users[username] === password) {
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("user", JSON.stringify({ username }));
-    setIsLoggedIn(true);
-    window.location.href = "/notes";
-  } else {
-    alert("Invalid credentials");
+    if (users[username] && users[username] === password) {
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify({ username }));
+      setIsLoggedIn(true);
+      window.location.href = "/dashboard";
+    } else {
+      alert("Invalid credentials");
+    }
   }
-}
 
   return (
     <div className="auth">

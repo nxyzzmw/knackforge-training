@@ -6,13 +6,18 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  
+}
+.root{
+    background-color:  #fde7a1;
+
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  background-color: #f7f9fc;
+  background-color:  #fde7a1;
   color: #1f2937;
 }
 
@@ -293,7 +298,7 @@ button.b3 {
 /* ========================= */
 
 .light {
-  background-color: #ffffff;
+  background-color: #fde7a1;
   color: #1f2937;
 }
 
@@ -390,4 +395,105 @@ button.b3 {
 
 .dark .calculator{
   color: #000;
+}
+/* ========================= */
+/* TODO PAGE                 */
+/* ========================= */
+
+.page {
+  min-height: 100vh;
+            display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Todo card (same as note/auth cards) */
+.todo-card {
+  width: 360px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title */
+.todo-card .title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+/* Input row */
+.input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.input-row input:focus {
+  border-color: #5ca5ee;
+  box-shadow: 0 0 0 2px rgba(92, 165, 238, 0.15);
+}
+
+/* Uses global button style automatically */
+
+/* Todo list */
+.todo-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each todo item (same as list & note cards) */
+.todo-items li {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 0.95rem;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================= */
+/* DARK THEME TODO           */
+/* ========================= */
+
+.dark .page {
+  background-color: #0f172a;
+}
+
+.dark .todo-card {
+  background-color: #ffffff;
+  color: #ffffff;
+}
+.dark .todo-card .title{
+    color: #000000;
+
+}
+
+.dark .input-row input {
+  background-color: #1e293b;
+  color: #ffffff;
+  border-color: #334155;
+}
+
+.dark .todo-items li {
+  background-color: #1e293b;
+  color: #ffffff;
+  border-color: #334155;
 }
