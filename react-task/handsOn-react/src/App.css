@@ -1,0 +1,268 @@
+/* ✅ Reset + Better base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* ✅ Full Page Setup */
+.app-container {
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+  padding-bottom: 40px;
+}
+
+/* ✅ Light Theme */
+.app-container.light {
+  background: #f5f5f5;
+  color: #111;
+}
+
+/* ✅ Dark Theme */
+.app-container.dark {
+  background: #111;
+  color: #fff;
+}
+
+/* ✅ Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+/* ✅ Navbar Light/Dark bg */
+.app-container.light .navbar {
+  background: rgba(245, 245, 245, 0.9);
+}
+
+.app-container.dark .navbar {
+  background: rgba(17, 17, 17, 0.9);
+}
+
+/* ✅ Logo */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+}
+
+/* ✅ Links */
+.links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.links a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+/* Light links */
+.app-container.light .links a {
+  color: #111;
+}
+
+.app-container.light .links a:hover {
+  background: rgba(0, 123, 255, 0.15);
+  color: #007bff;
+}
+
+/* Dark links */
+.app-container.dark .links a {
+  color: white;
+}
+
+.app-container.dark .links a:hover {
+  background: rgba(0, 212, 255, 0.18);
+  color: #00d4ff;
+}
+
+/* ✅ Theme Button */
+.theme-btn {
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+/* Light button */
+.app-container.light .theme-btn {
+  background: #111;
+  color: white;
+}
+
+.app-container.light .theme-btn:hover {
+  opacity: 0.9;
+}
+
+/* Dark button */
+.app-container.dark .theme-btn {
+  background: white;
+  color: black;
+}
+
+.app-container.dark .theme-btn:hover {
+  opacity: 0.85;
+}
+
+/* ✅ Content */
+.page-content {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ✅ Todo Page Card */
+.todo-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 2rem;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+/* Light Todo Card */
+.app-container.light .todo-card {
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  color: #111;
+}
+
+/* Dark Todo Card */
+.app-container.dark .todo-card {
+  background: #1d1d1d;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.06);
+  color: white;
+}
+
+/* Title */
+.todo-card .title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Title Light */
+.app-container.light .todo-card .title {
+  color: #1f2937;
+}
+
+/* Title Dark */
+.app-container.dark .todo-card .title {
+  color: #ffffff;
+}
+
+/* ✅ Input row */
+.input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+/* Input Light */
+.app-container.light .input-row input {
+  background: white;
+  color: #111;
+  border: 1px solid #d1d5db;
+}
+
+/* Input Dark */
+.app-container.dark .input-row input {
+  background: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+}
+
+/* Focus effect */
+.input-row input:focus {
+  border-color: #5ca5ee;
+  box-shadow: 0 0 0 3px rgba(92, 165, 238, 0.2);
+}
+
+/* ✅ Todo list */
+.todo-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ✅ Each todo item */
+.todo-items li {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+/* Item Light */
+.app-container.light .todo-items li {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
+}
+
+/* Item Dark */
+.app-container.dark .todo-items li {
+  background: #2b2b2b;
+  border: 1px solid #444;
+  color: white;
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.04);
+}
+
+/* ✅ Hover effect */
+.todo-items li:hover {
+  transform: scale(1.02);
+}
+
+/* ✅ Responsive Navbar */
+@media (max-width: 650px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .page-content {
+    padding: 20px;
+  }
+}
