@@ -6,7 +6,7 @@ function About() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>ℹ️ About Page</h2>
+      <h2>About Page</h2>
       <p>Theme is: {theme}</p>
     </div>
   );

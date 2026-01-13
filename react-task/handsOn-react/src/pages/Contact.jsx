@@ -6,7 +6,7 @@ function Contact() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>📞 Contact Page</h2>
+      <h2> Contact Page</h2>
       <p>Theme is: {theme}</p>
     </div>
   );

@@ -19,9 +19,9 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <HashRouter>
-        {/* ✅ Full Page Wrapper */}
+  
         <div className={`app-container ${theme}`}>
-          {/* ✅ NAVBAR */}
+          {/*  NAVBAR */}
           <nav className="navbar">
             <h2 className="logo">ReactApp</h2>
  
@@ -37,7 +37,7 @@ function App() {
             </button>
           </nav>
 
-          {/* ✅ Page Content */}
+          {/* Page Content */}
           <div className="page-content">
             <Routes>
               <Route path="/" element={<Home />}  />
