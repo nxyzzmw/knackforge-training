@@ -27,7 +27,7 @@ function Todo() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter a todo..."
           />
-          <button onClick={addTodo}>Add</button>
+          <button className="todo-btn" onClick={addTodo}>Add</button>
         </div>
 
         <ul className="todo-items">
@@ -35,7 +35,7 @@ function Todo() {
             <li key={index}>
               <span>{todo.text}</span>
 
-              <button onClick={() => del(index)}>X</button>
+              <button className="dec-btn" onClick={() => del(index)}>X</button>
             </li>
           ))}
         </ul>

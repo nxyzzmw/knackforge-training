@@ -5,7 +5,11 @@ import { ThemeContext } from "./ThemeContext";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Todo from "./pages/Todo";
+import Todo from "./components/Todo";
+import Form from "./components/Form"
+
+import CounterDisplay from "./components/CounterDisplay";
+import CounterButtons from "./components/CounterButtons";
 
 import "./App.css";
 
@@ -19,17 +23,17 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <HashRouter>
-  
         <div className={`app-container ${theme}`}>
-          {/*  NAVBAR */}
+          
+          {/* NAVBAR */}
           <nav className="navbar">
             <h2 className="logo">ReactApp</h2>
- 
+
             <div className="links">
               <Link to="/">Home</Link>
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
-              
+           
             </div>
 
             <button className="theme-btn" onClick={toggleTheme}>
@@ -40,17 +44,21 @@ function App() {
           {/* Page Content */}
           <div className="page-content">
             <Routes>
-              <Route path="/" element={<Home />}  />
+              <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/todo" element={<Todo />} />
-
             </Routes>
+
+          </div>
+          <div className="counter">
+
+            {/*  Redux Counter UI */}
+            <CounterDisplay />
+            <CounterButtons />
           </div>
         </div>
-        
       </HashRouter>
-   
     </ThemeContext.Provider>
   );
 }

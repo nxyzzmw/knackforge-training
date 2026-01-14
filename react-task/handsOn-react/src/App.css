@@ -1,4 +1,4 @@
-/* ✅ Reset + Better base */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,26 +9,24 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* ✅ Full Page Setup */
+/* App container + themes */
 .app-container {
   min-height: 100vh;
   transition: background 0.3s ease, color 0.3s ease;
   padding-bottom: 40px;
 }
 
-/* ✅ Light Theme */
 .app-container.light {
   background: #f5f5f5;
   color: #111;
 }
 
-/* ✅ Dark Theme */
 .app-container.dark {
   background: #111;
   color: #fff;
 }
 
-/* ✅ Navbar */
+/* Navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -41,7 +39,6 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* ✅ Navbar Light/Dark bg */
 .app-container.light .navbar {
   background: rgba(245, 245, 245, 0.9);
 }
@@ -50,14 +47,13 @@ body {
   background: rgba(17, 17, 17, 0.9);
 }
 
-/* ✅ Logo */
 .logo {
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 0.6px;
 }
 
-/* ✅ Links */
+/* Navbar links */
 .links {
   display: flex;
   gap: 20px;
@@ -72,7 +68,6 @@ body {
   transition: 0.2s;
 }
 
-/* Light links */
 .app-container.light .links a {
   color: #111;
 }
@@ -82,9 +77,8 @@ body {
   color: #007bff;
 }
 
-/* Dark links */
 .app-container.dark .links a {
-  color: white;
+  color: #fff;
 }
 
 .app-container.dark .links a:hover {
@@ -92,7 +86,7 @@ body {
   color: #00d4ff;
 }
 
-/* ✅ Theme Button */
+/* Theme toggle button */
 .theme-btn {
   padding: 8px 14px;
   border: none;
@@ -102,34 +96,78 @@ body {
   transition: 0.2s ease;
 }
 
-/* Light button */
 .app-container.light .theme-btn {
   background: #111;
-  color: white;
+  color: #fff;
 }
 
 .app-container.light .theme-btn:hover {
   opacity: 0.9;
 }
 
-/* Dark button */
 .app-container.dark .theme-btn {
-  background: white;
-  color: black;
+  background: #fff;
+  color: #000;
 }
 
 .app-container.dark .theme-btn:hover {
   opacity: 0.85;
 }
 
-/* ✅ Content */
+/* Page content */
 .page-content {
   padding: 30px;
   display: flex;
   justify-content: center;
 }
 
-/* ✅ Todo Page Card */
+/* Home page */
+.home-page {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Shared primary button style (used in Home + Todo + Form) */
+.todo-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.25s ease;
+  width: fit-content;
+  align-self: center;
+}
+
+.app-container.light .todo-btn {
+  background: #007bff;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0, 123, 255, 0.25);
+}
+
+.app-container.light .todo-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.app-container.dark .todo-btn {
+  background: #00d4ff;
+  color: #000;
+  box-shadow: 0 8px 18px rgba(0, 212, 255, 0.18);
+}
+
+.app-container.dark .todo-btn:hover {
+  background: #00b2d6;
+  transform: scale(1.05);
+}
+
+/* Todo card */
 .todo-card {
   width: 100%;
   max-width: 380px;
@@ -139,38 +177,33 @@ body {
   transition: 0.3s ease;
 }
 
-/* Light Todo Card */
 .app-container.light .todo-card {
-  background: #ffffff;
+  background: #fff;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   color: #111;
 }
 
-/* Dark Todo Card */
 .app-container.dark .todo-card {
   background: #1d1d1d;
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.06);
-  color: white;
+  color: #fff;
 }
 
-/* Title */
 .todo-card .title {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
-/* Title Light */
 .app-container.light .todo-card .title {
   color: #1f2937;
 }
 
-/* Title Dark */
 .app-container.dark .todo-card .title {
-  color: #ffffff;
+  color: #fff;
 }
 
-/* ✅ Input row */
+/* Todo input row */
 .input-row {
   display: flex;
   gap: 10px;
@@ -186,27 +219,24 @@ body {
   transition: 0.2s ease;
 }
 
-/* Input Light */
 .app-container.light .input-row input {
-  background: white;
+  background: #fff;
   color: #111;
   border: 1px solid #d1d5db;
 }
 
-/* Input Dark */
 .app-container.dark .input-row input {
   background: #2b2b2b;
-  color: white;
+  color: #fff;
   border: 1px solid #444;
 }
 
-/* Focus effect */
 .input-row input:focus {
   border-color: #5ca5ee;
   box-shadow: 0 0 0 3px rgba(92, 165, 238, 0.2);
 }
 
-/* ✅ Todo list */
+/* Todo list */
 .todo-items {
   list-style: none;
   padding: 0;
@@ -216,7 +246,6 @@ body {
   gap: 12px;
 }
 
-/* ✅ Each todo item */
 .todo-items li {
   padding: 12px 14px;
   border-radius: 12px;
@@ -228,28 +257,192 @@ body {
   transition: 0.2s ease;
 }
 
-/* Item Light */
 .app-container.light .todo-items li {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #d1d5db;
   color: #111;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
 }
 
-/* Item Dark */
 .app-container.dark .todo-items li {
   background: #2b2b2b;
   border: 1px solid #444;
-  color: white;
+  color: #fff;
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.04);
 }
 
-/* ✅ Hover effect */
 .todo-items li:hover {
   transform: scale(1.02);
 }
 
-/* ✅ Responsive Navbar */
+/* Counter section */
+.counter {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.app-container.light .counter {
+  background: #fff;
+  color: #111;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.app-container.dark .counter {
+  background: #1d1d1d;
+  color: #fff;
+  border: 1px solid #444;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.06);
+}
+
+.counter h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* Counter buttons */
+.counter-btns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.counter-btns button {
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.inc-btn {
+  background: #22c55e;
+  color: #fff;
+    display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.25s ease;
+  width: fit-content;
+  align-self: center;
+}
+
+.inc-btn:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
+
+.dec-btn {
+  background: #ef4444;
+  color: #fff;
+    display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.25s ease;
+  width: fit-content;
+  align-self: center;
+  margin: 10px;
+  
+}
+
+.dec-btn:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+/* Contact page + Form */
+.contact-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.form {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.app-container.light .form {
+  background: #fff;
+  color: #111;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.app-container.dark .form {
+  background: #1d1d1d;
+  color: #fff;
+  border: 1px solid #444;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.06);
+}
+
+.form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.app-container.light .form input {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #111;
+}
+
+.app-container.dark .form input {
+  border: 1px solid #444;
+  background: #2b2b2b;
+  color: #fff;
+}
+
+/* Saved data box */
+.saved-data {
+  margin: 25px auto;
+  max-width: 420px;
+  padding: 16px;
+  border-radius: 14px;
+  text-align: left;
+
+}
+.error-text{
+  color: red;
+}
+.app-container.light .saved-data {
+  background: #fff;
+  border: 1px solid #d1d5db;
+}
+
+.app-container.dark .saved-data {
+  background: #1d1d1d;
+  border: 1px solid #444;
+}
+
+/* Responsive */
 @media (max-width: 650px) {
   .navbar {
     flex-direction: column;
@@ -264,5 +457,10 @@ body {
 
   .page-content {
     padding: 20px;
+  }
+
+  .counter {
+    max-width: 95%;
+    padding: 16px;
   }
 }
