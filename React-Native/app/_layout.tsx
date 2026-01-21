@@ -1,34 +1,43 @@
-import React, { useEffect } from "react";
+import { AuthProvider, useAuth } from "@/lib/auth-context";
 import { Stack, useRouter, useSegments } from "expo-router";
+import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { PaperProvider } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
 
 function RouteGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const { user, isLoadingUser } = useAuth();
   const segments = useSegments();
 
-  const isAuth = false;
-
   useEffect(() => {
-    const inAuthGroup = segments[0] === "auth"; // change to "(auth)" if your folder is (auth)
+    const inAuthGroup = segments[0] === "auth";
 
-    if (!isAuth && !inAuthGroup) {
+    if (!user && !inAuthGroup && !isLoadingUser) {
       router.replace("/auth");
-    }
-
-    if (isAuth && inAuthGroup) {
+    } else if (user && inAuthGroup && !isLoadingUser) {
       router.replace("/");
     }
-  });
+  }, [user, segments]);
 
   return <>{children}</>;
 }
 
 export default function RootLayout() {
   return (
-    <RouteGuard>
-      <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="auth" options={{ headerShown: true}} />
-        <Stack.Screen name="(tabs)" />
-      </Stack>
-    </RouteGuard>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AuthProvider>
+        <PaperProvider>
+          <SafeAreaProvider>
+            <RouteGuard>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              </Stack>
+            </RouteGuard>
+          </SafeAreaProvider>
+        </PaperProvider>
+      </AuthProvider>
+    </GestureHandlerRootView>
   );
 }
