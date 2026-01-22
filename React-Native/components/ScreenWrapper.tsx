@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, useColorScheme } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 
 export default function ScreenWrapper({
   children,
@@ -8,9 +9,14 @@ export default function ScreenWrapper({
   children: React.ReactNode;
 }) {
   const insets = useSafeAreaInsets();
+  const scheme = useColorScheme();
+  const isDark = scheme === "dark";
+
+  const bg = isDark ? "black" : "#F4F1FF";
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View style={[styles.container, { paddingTop: insets.top, backgroundColor: bg }]}>
+      <StatusBar style={isDark ? "light" : "dark"} backgroundColor={bg} />
       {children}
     </View>
   );
@@ -19,7 +25,6 @@ export default function ScreenWrapper({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F7F6FF",
     paddingHorizontal: 18,
   },
 });

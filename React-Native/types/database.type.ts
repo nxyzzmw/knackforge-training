@@ -15,3 +15,4 @@ export interface HabitCompletion extends Models.Document {
   user_id: string;
   completed_at: string;
 }
+
