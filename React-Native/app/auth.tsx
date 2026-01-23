@@ -21,7 +21,7 @@ export default function AuthScreen() {
   const PRIMARY = "#6D28D9";
 
   const COLORS = {
-    bg: isDark ? "#0B0B10" : "#F4F1FF",
+    bg: isDark ? "black" : "#F4F1FF",
     card: isDark ? "#141421" : "#FFFFFF",
     inputBg: isDark ? "#1C1C28" : "#F7FAFC",
     text: isDark ? "#FFFFFF" : "#111827",

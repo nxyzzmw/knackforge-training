@@ -238,7 +238,7 @@ setHabits(response.documents as unknown as Habit[]);
 
         <ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 30 }}
+          contentContainerStyle={{ paddingBottom: 140 }}
         >
           {habits?.length === 0 ? (
             <View style={styles.emptyState}>
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
 
   // ✅ mobile visible completed style
   cardInnerCompleted: {
-    opacity: 0.4,
+    opacity: 0.3,
   },
 
  

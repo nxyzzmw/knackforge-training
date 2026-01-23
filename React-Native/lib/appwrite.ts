@@ -16,3 +16,4 @@ import {Account, Client, Databases} from "react-native-appwrite"
     events:string[]
     payload:any
    }
+ 

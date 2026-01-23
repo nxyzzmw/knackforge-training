@@ -69,7 +69,7 @@ export default function RootLayout() {
                     headerShown: true,
                     headerShadowVisible: false,
                     headerStyle: {
-                      backgroundColor: isDark ? "#0B0B10" : "#F4F1FF",
+                      backgroundColor: isDark ? "black" : "#F4F1FF",
                     },
                     headerTitleAlign: "center",
                     headerTitle: () => (
