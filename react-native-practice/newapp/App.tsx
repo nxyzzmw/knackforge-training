@@ -4,9 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ThemeProvider, { ThemeContext } from "./contexts/ThemeProvider";
 import { UserContext } from "./contexts/UserContext";
-import { Card } from '@rneui/themed';
 import Toggle from "./components/toggle";
 import MyTabs from "./Navigations/AppStack";
+import { Text } from "@rneui/base";
 
 function MainApp() {
   const { theme } = useContext(ThemeContext);
@@ -17,7 +17,7 @@ function MainApp() {
         flex: 1,
         backgroundColor: theme === "light" ? "white" : "black",
       }}
-    >
+    ><Text style={{ color: theme === "light" ? "black" : "white", textAlign: "center" , fontWeight: "bold" , fontSize:28}}>React Native App</Text>
       {/* Toggle */}
       <Toggle />
 
