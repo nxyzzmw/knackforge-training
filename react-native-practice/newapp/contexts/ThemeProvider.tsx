@@ -1,6 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState } from 'react';
 
-export type ThemeType = "light" | "dark";
+export type ThemeType = 'light' | 'dark';
 
 type ThemeContextType = {
   theme: ThemeType;
@@ -8,15 +8,19 @@ type ThemeContextType = {
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: "light",
+  theme: 'light',
   toggleTheme: () => {},
 });
 
-export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<ThemeType>("light");
+export default function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [theme, setTheme] = useState<ThemeType>('light');
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
   return (

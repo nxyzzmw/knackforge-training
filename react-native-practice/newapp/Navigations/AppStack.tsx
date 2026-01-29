@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../contexts/ThemeProvider";
-import Home from "../Screens/Home";
-import Show from "../Screens/Show";
-import Settings from "../Screens/Settings";
-import Todo from "../Screens/Todo";
-import MaterialIcons from "@react-native-vector-icons/material-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React, { useContext } from 'react';
+import { ThemeContext } from '../contexts/ThemeProvider';
+import Home from '../Screens/Home';
+import Show from '../Screens/Show';
+import Settings from '../Screens/Settings';
+import Todo from '../Screens/Todo';
+import MaterialIcons from '@react-native-vector-icons/material-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,18 +27,18 @@ const TodoIcon = ({ color, size }: { color: string; size: number }) => (
 
 export default function MyTabs() {
   const { theme } = useContext(ThemeContext);
-  const isDark = theme === "dark";
+  const isDark = theme === 'dark';
 
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: isDark ? "#000" : "#fff",
-          borderTopColor: isDark ? "#333" : "#ccc",
+          backgroundColor: isDark ? '#000' : '#fff',
+          borderTopColor: isDark ? '#333' : '#ccc',
         },
-        tabBarActiveTintColor: isDark ? "#fff" : "#000",
-        tabBarInactiveTintColor: isDark ? "#aaa" : "#666",
+        tabBarActiveTintColor: isDark ? '#fff' : '#000',
+        tabBarInactiveTintColor: isDark ? '#aaa' : '#666',
       }}
     >
       <Tab.Screen
@@ -64,7 +64,6 @@ export default function MyTabs() {
           tabBarIcon: SettingsIcon,
         }}
       />
-
 
       <Tab.Screen
         name="Todo"

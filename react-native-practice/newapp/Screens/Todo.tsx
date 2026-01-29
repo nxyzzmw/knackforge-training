@@ -12,7 +12,6 @@ import {
 import ScreenWrapper from '../components/ScreenWrapper';
 import { ScrollView } from 'react-native';
 import { Button } from '@rneui/base';
-
 export default function Todo() {
   const [description, setDescription] = useState('');
   const [todos, setTodos] = useState<string[]>([]);
@@ -45,8 +44,8 @@ export default function Todo() {
         {
           text: 'Edit',
           onPress: () => {
-            setDescription(todo);   // load text
-            setEditIndex(index);    // mark editing
+            setDescription(todo); // load text
+            setEditIndex(index); // mark editing
           },
         },
         {
@@ -61,7 +60,7 @@ export default function Todo() {
           style: 'cancel',
         },
       ],
-      { cancelable: true }
+      { cancelable: true },
     );
   }
 
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    width: 200,
+    width: 100,
     marginTop: 20,
     alignSelf: 'center',
   },

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -6,58 +6,19 @@ import {
   ScrollView,
   StyleSheet,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ScreenWrapper from '../components/ScreenWrapper';
 import { ThemeContext } from '../contexts/ThemeProvider';
+import { UserContext } from '../contexts/UserContext';
 
+import { useContext } from 'react';
 export default function Home() {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
-
-  // user list data
-  const users = [
-    {
-      name: 'brynn',
-      avatar: 'https://uifaces.co/our-content/donated/1H_7AxP0.jpg',
-      role: 'admin',
-      about: 'Loves to code!',
-    },
-    {
-      name: 'thot leader',
-      avatar:
-        'https://images.pexels.com/photos/598745/pexels-photo-598745.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb',
-      role: 'user',
-      about: 'Enjoys hiking and outdoor adventures.',
-    },
-    {
-      name: 'jsa',
-      avatar: 'https://uifaces.co/our-content/donated/bUkmHPKs.jpg',
-      role: 'moderator',
-      about: 'Avid reader and coffee enthusiast.',
-    },
-    {
-      name: 'talhaconcepts',
-      avatar: 'https://randomuser.me/api/portraits/men/4.jpg',
-      role: 'user',
-      about: 'Tech geek and gamer.',
-    },
-    {
-      name: 'andy vitale',
-      avatar: 'https://uifaces.co/our-content/donated/NY9hnAbp.jpg',
-      role: 'admin',
-      about: 'Passionate about photography and art.',
-    },
-    {
-      name: 'katy friedson',
-      avatar:
-        'https://images-na.ssl-images-amazon.com/images/M/MV5BMTgxMTc1MTYzM15BMl5BanBnXkFtZTgwNzI5NjMwOTE@._V1_UY256_CR16,0,172,256_AL_.jpg',
-      role: 'user',
-      about: 'Yoga instructor and wellness advocate.',
-    },
-  ];
+  const users = useContext(UserContext);
 
   return (
     <ScreenWrapper>
@@ -74,8 +35,8 @@ export default function Home() {
 
         {/* User Cards */}
         {users.map((user, index) => (
-          
-  <TouchableOpacity            key={index}
+          <TouchableOpacity
+            key={index}
             style={[
               styles.userCard,
               {
@@ -86,7 +47,7 @@ export default function Home() {
                 elevation: 8,
               },
             ]}
-            onPress={()=>navigation.navigate('Profile', {user})}
+            onPress={() => navigation.navigate('Profile' as string, { user })}
           >
             <Image source={{ uri: user.avatar }} style={styles.avatar} />
 
@@ -118,16 +79,17 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
   },
   marginTop20: {
     marginTop: 20,
-    width: 200,
+    width: 150,
     alignSelf: 'center',
   },
+
   divider: {
     height: 1,
     backgroundColor: '#ccc',
@@ -138,7 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 15,
     padding: 20,
-    width: 376,
+    width: 300,
     marginTop: 30,
     alignSelf: 'center',
   },
