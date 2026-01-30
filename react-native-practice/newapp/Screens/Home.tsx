@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -13,12 +13,23 @@ import ScreenWrapper from '../components/ScreenWrapper';
 import { ThemeContext } from '../contexts/ThemeProvider';
 import { UserContext } from '../contexts/UserContext';
 
-import { useContext } from 'react';
 export default function Home() {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
   const users = useContext(UserContext);
+
+  // store status per user
+  const [status, setStatus] = useState<Record<number, string>>( "",
+  );
+
+  // toggle per user
+  const toggleStatus = (index: number) => {
+    setStatus(prev => ({
+      ...prev,
+      [index]: prev[index] === "Online" ? "Offline" : "Online",
+    }));
+  };
 
   return (
     <ScreenWrapper>
@@ -26,14 +37,12 @@ export default function Home() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 50 }}
       >
-        {/* Title */}
         <Text style={[styles.title, { color: isDark ? '#fff' : '#000' }]}>
           USERS LIST
         </Text>
 
         <View style={styles.divider} />
 
-        {/* User Cards */}
         {users.map((user, index) => (
           <TouchableOpacity
             key={index}
@@ -47,7 +56,12 @@ export default function Home() {
                 elevation: 8,
               },
             ]}
-            onPress={() => navigation.navigate('Profile' as string, { user })}
+            onPress={() =>
+              navigation.navigate('Profile' as never, {
+                user,
+                status: status[index] || "Offline",
+              } as never)
+            }
           >
             <Image source={{ uri: user.avatar }} style={styles.avatar} />
 
@@ -55,17 +69,39 @@ export default function Home() {
               <Text>
                 <Text style={styles.label}>Name:</Text> {user.name}
               </Text>
+
               <Text>
                 <Text style={styles.label}>Role:</Text> {user.role}
               </Text>
+
               <Text>
                 <Text style={styles.label}>About:</Text> {user.about}
               </Text>
+
+              <Text>
+                <Text style={styles.label}> Status:</Text>
+                <Text
+                  style={{
+                    color:
+                      (status[index] || "Offline") === 'Online'
+                        ? 'green'
+                        : '#ff0000',
+                  }}
+                >
+                  {" "}{status[index] || "Offline"}
+                </Text>
+              </Text>
+<View style={styles.button}>
+   <Button
+                title="Toggle Status"
+                onPress={() => toggleStatus(index)}
+              />
+</View>
+             
             </View>
           </TouchableOpacity>
         ))}
 
-        {/* Navigate Button */}
         <View style={styles.marginTop20}>
           <Button
             title="Go To Profile"
@@ -89,7 +125,6 @@ const styles = StyleSheet.create({
     width: 150,
     alignSelf: 'center',
   },
-
   divider: {
     height: 1,
     backgroundColor: '#ccc',
@@ -116,5 +151,10 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: 'bold',
+  },
+  button:{
+    marginTop:10,
+    width:"auto",
+    height:50,
   },
 });

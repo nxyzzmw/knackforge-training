@@ -20,6 +20,7 @@ export default function Show({
   route: any;
 }) {
   const user = route?.params?.user ?? null;
+  const status = route?.params?.status ?? null;
 
   const { theme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
@@ -43,7 +44,7 @@ export default function Show({
               <Text style={styles.name}>{user.name}</Text>
               <Text>Role: {user.role}</Text>
               <Text>About: {user.about}</Text>
-
+ <Text >Status: {status}</Text>
               <View style={styles.marginTop20}>
                 <Button title="Go Back" onPress={() => navigation.goBack()} />
               </View>
