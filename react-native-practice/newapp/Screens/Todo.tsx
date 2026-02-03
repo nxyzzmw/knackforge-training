@@ -12,58 +12,73 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-
+import { launchCamera, CameraOptions } from 'react-native-image-picker';
+import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { launchCamera } from "react-native-image-picker";
 import { Button } from '@rneui/base';
-
 import ScreenWrapper from '../components/ScreenWrapper';
 
 interface TodoItem {
   text: string;
   photo: string | null;
+  location: {
+    latitude: number;
+    longitude: number;
+  } | null;
 }
 
 export default function Todo() {
-
   const [description, setDescription] = useState('');
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [editIndex, setEditIndex] = useState<number | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
+  const [location, setLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
 
-  const STORAGE_KEY = "MY_TODOS";
+  const STORAGE_KEY = 'MY_TODOS';
 
   // ================= CAMERA PERMISSION =================
-  const requestCameraPermission = async () => {
-    if (Platform.OS === "android") {
+  const requestCameraPermission = async (): Promise<boolean> => {
+    try {
       const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'Todo App Camera Permission',
+          message:
+            'Todo App needs access to your camera so you can attach photos to your todos.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
       );
       return granted === PermissionsAndroid.RESULTS.GRANTED;
+    } catch (err) {
+      console.warn(err);
+      return false;
     }
-    return true;
   };
 
-  const openCamera = async () => {
-    const hasPermission = await requestCameraPermission();
-
-    if (!hasPermission) {
-      Alert.alert("Camera permission denied");
-      return;
+  // ================= LOCATION PERMISSION =================
+  const requestLocationPermission = async (): Promise<boolean> => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Todo App Location Permission',
+          message:
+            'Todo App needs access to your location so you can attach it to your todo.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      return granted === PermissionsAndroid.RESULTS.GRANTED;
+    } catch (err) {
+      console.warn(err);
+      return false;
     }
-
-    launchCamera(
-      {
-        mediaType: "photo",
-        cameraType: "back",
-        saveToPhotos: true,
-      },
-      (response) => {
-        if (response.assets && response.assets[0].uri) {
-          setPhoto(response.assets[0].uri);
-        }
-      }
-    );
   };
 
   // ================= LOAD TODOS =================
@@ -74,37 +89,83 @@ export default function Todo() {
   const loadTodos = async () => {
     try {
       const saved = await AsyncStorage.getItem(STORAGE_KEY);
-      if (saved !== null) {
-        setTodos(JSON.parse(saved));
-      }
+      if (saved) setTodos(JSON.parse(saved));
     } catch (e) {
-      console.log("Failed to load todos", e);
+      console.log('Failed to load todos', e);
     }
   };
 
   // ================= SAVE TODOS =================
   useEffect(() => {
-    saveTodos();
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(todos)).catch(console.log);
   }, [todos]);
 
-  const saveTodos = async () => {
+  // ================= CAMERA =================
+  const openCamera = async () => {
+    const hasPermission =
+      Platform.OS === 'android' ? await requestCameraPermission() : true;
+
+    if (!hasPermission) {
+      Alert.alert('Permission denied', 'Camera access is required');
+      return;
+    }
+
+    const options: CameraOptions = {
+      mediaType: 'photo',
+      quality: 0.7,
+      saveToPhotos: false,
+    };
+
     try {
-      await AsyncStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(todos)
-      );
-    } catch (e) {
-      console.log("Failed to save todos", e);
+      const result = await launchCamera(options);
+
+      if (result.didCancel) return;
+      if (result.errorCode) {
+        Alert.alert('Camera error', result.errorMessage || 'Unknown error');
+        return;
+      }
+
+      const uri = result.assets?.[0]?.uri;
+      if (uri) setPhoto(uri);
+    } catch (error) {
+      Alert.alert('Failed to open camera', String(error));
     }
   };
 
+  // ================= LOCATION =================
+  const addLocation = async () => {
+    const hasPermission =
+      Platform.OS === 'android' ? await requestLocationPermission() : true;
+
+    if (!hasPermission) {
+      Alert.alert('Permission denied', 'Location access is required');
+      return;
+    }
+
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation({ latitude, longitude });
+      },
+      (error) => {
+        Alert.alert('Location error', error.message);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+      },
+    );
+  };
+
   // ================= ADD / UPDATE TODO =================
-  function handleTodo() {
+  const handleTodo = () => {
     if (!description.trim()) return;
 
     const newTodo: TodoItem = {
       text: description.trim(),
-      photo: photo,
+      photo,
+      location,
     };
 
     if (editIndex !== null) {
@@ -118,33 +179,31 @@ export default function Todo() {
 
     setDescription('');
     setPhoto(null);
-  }
+    setLocation(null);
+  };
 
   // ================= OPTIONS =================
-  function showTodoOptions(todo, index) {
-    Alert.alert(
-      'Todo Options',
-      todo.text,
-      [
-        {
-          text: 'Edit',
-          onPress: () => {
-            setDescription(todo.text);
-            setPhoto(todo.photo || null);
-            setEditIndex(index);
-          },
+  const showTodoOptions = (todo: TodoItem, index: number) => {
+    Alert.alert('Todo Options', todo.text, [
+      {
+        text: 'Edit',
+        onPress: () => {
+          setDescription(todo.text);
+          setPhoto(todo.photo);
+          setLocation(todo.location);
+          setEditIndex(index);
         },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => {
-            setTodos(todos.filter((_, i) => i !== index));
-          },
+      },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: () => {
+          setTodos(todos.filter((_, i) => i !== index));
         },
-        { text: 'Cancel', style: 'cancel' },
-      ]
-    );
-  }
+      },
+      { text: 'Cancel', style: 'cancel' },
+    ]);
+  };
 
   // ================= UI =================
   return (
@@ -155,7 +214,6 @@ export default function Todo() {
       >
         <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
           <View style={styles.container}>
-
             <View style={styles.card}>
               <Text style={styles.title}>Todo</Text>
 
@@ -167,44 +225,44 @@ export default function Todo() {
                 multiline
                 style={styles.input}
               />
-              <View style={{ marginTop: 10 }} />
+<View style={styles.buttonGroup}>
               <Button title="Take Photo" onPress={openCamera} />
+              <Button title="Add Location" onPress={addLocation} />
 
-              {photo && (
-                <Image source={{ uri: photo }} style={styles.image} />
-              )}
+              {photo && <Image source={{ uri: photo }} style={styles.image} />}
 
               <Button
-                title={editIndex !== null ? "Update Todo" : "Add Todo"}
+                title={editIndex !== null ? 'Update Todo' : 'Add Todo'}
                 onPress={handleTodo}
-                style={{ marginTop: 10 }}
               />
             </View>
-
+</View>
             <View style={styles.card}>
               <Text style={styles.title}>Your Todos</Text>
 
-              {todos.length === 0 ? (
-                <Text>No todos yet</Text>
-              ) : (
-                todos.map((todo, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => showTodoOptions(todo, index)}
-                  >
-                    <Text style={styles.todoItem}>• {todo.text}</Text>
+              {todos.map((todo, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => showTodoOptions(todo, index)}
+                >
+                  <Text style={styles.todoItem}>• {todo.text}</Text>
 
-                    {todo.photo && (
-                      <Image
-                        source={{ uri: todo.photo }}
-                        style={styles.todoImage}
-                      />
-                    )}
-                  </TouchableOpacity>
-                ))
-              )}
+                  {todo.photo && (
+                    <Image
+                      source={{ uri: todo.photo }}
+                      style={styles.todoImage}
+                    />
+                  )}
+
+                  {todo.location && (
+                    <Text style={{ fontSize: 12, color: 'gray' }}>
+                      📍 {todo.location.latitude},{' '}
+                      {todo.location.longitude}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              ))}
             </View>
-
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -215,13 +273,7 @@ export default function Todo() {
 // ================= STYLES =================
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
-
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-
+  title: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
@@ -231,7 +283,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'black',
   },
-
   card: {
     backgroundColor: 'white',
     borderRadius: 15,
@@ -239,23 +290,12 @@ const styles = StyleSheet.create({
     elevation: 6,
     marginTop: 20,
   },
+  todoItem: { fontSize: 16, marginTop: 10 },
+  image: { width: 200, height: 200, marginVertical: 10, borderRadius: 10 },
+  todoImage: { width: 120, height: 120, borderRadius: 10, marginTop: 5 },
+  buttonGroup: {
+  marginTop: 15,
+  gap: 10,
+},
 
-  todoItem: {
-    fontSize: 16,
-    marginTop: 10,
-  },
-
-  image: {
-    width: 200,
-    height: 200,
-    marginVertical: 10,
-    borderRadius: 10,
-  },
-
-  todoImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 10,
-    marginTop: 5,
-  },
 });

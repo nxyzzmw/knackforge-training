@@ -1,4 +1,9 @@
-import React, { useContext } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 import {
   View,
   Text,
@@ -7,25 +12,66 @@ import {
   Image,
   ScrollView,
   FlatList,
+  SectionList,
+  ActivityIndicator,
 } from 'react-native';
 import ScreenWrapper from '../components/ScreenWrapper';
 import { ThemeContext } from '../contexts/ThemeProvider';
-import { UserContext } from '../contexts/UserContext';
 
-export default function Show({
-  navigation,
-  route,
-}: {
-  navigation: any;
-  route: any;
-}) {
+export default function Show({ navigation, route }: any) {
   const user = route?.params?.user ?? null;
   const status = route?.params?.status ?? null;
 
   const { theme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
 
-  const users = useContext(UserContext);
+  // API STATE
+  const [apiUsers, setApiUsers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // ================= FETCH USERS =================
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users'
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch users');
+      }
+
+      const data = await response.json();
+      setApiUsers(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  // ================= GROUP USERS BY CITY (ADDED) =================
+  const usersByCity = useMemo(() => {
+    const grouped: Record<string, any[]> = {};
+
+    apiUsers.forEach((u) => {
+      const city = u.address?.city || 'Unknown';
+      if (!grouped[city]) grouped[city] = [];
+      grouped[city].push(u);
+    });
+
+    return Object.keys(grouped).map((city) => ({
+      title: city,
+      data: grouped[city],
+    }));
+  }, [apiUsers]);
 
   return (
     <ScreenWrapper>
@@ -34,7 +80,7 @@ export default function Show({
         contentContainerStyle={{ paddingBottom: 50 }}
       >
         <View style={styles.container}>
-          {/*  Show only if user exists */}
+          {/* USER DETAILS */}
           {user ? (
             <View style={styles.card}>
               <Text style={styles.heading}>User Details</Text>
@@ -44,7 +90,8 @@ export default function Show({
               <Text style={styles.name}>{user.name}</Text>
               <Text>Role: {user.role}</Text>
               <Text>About: {user.about}</Text>
- <Text >Status: {status}</Text>
+              <Text>Status: {status}</Text>
+
               <View style={styles.marginTop20}>
                 <Button title="Go Back" onPress={() => navigation.goBack()} />
               </View>
@@ -56,35 +103,97 @@ export default function Show({
           )}
         </View>
 
-        {/*  Always visible */}
+        {/* OTHER USERS */}
         <Text style={[styles.heading, { color: isDark ? 'white' : 'black' }]}>
           OTHER USERS
         </Text>
 
-        <FlatList
-          data={users}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.card1}>
-              <View style={styles.info}>
-                <Image
-                  source={{ uri: item.avatar }}
-                  style={{ width: 60, height: 60, borderRadius: 30 }}
-                />
-                <Text style={styles.name}>{item.name}</Text>
+        {/* LOADING */}
+        {loading && (
+          <View style={styles.center}>
+            <ActivityIndicator size="large" />
+            <Text>Loading users...</Text>
+          </View>
+        )}
 
-                <View style={styles.button1}>
-                  <Button
-                    title="View Profile"
-                    onPress={() => navigation.navigate('Home', { user: item })}
+        {/* ERROR */}
+        {error && (
+          <View style={styles.center}>
+            <Text style={{ color: 'red' }}>{error}</Text>
+            <Button title="Retry" onPress={fetchUsers} />
+          </View>
+        )}
+
+        {/* FLATLIST (UNCHANGED) */}
+        {!loading && !error && (
+          <FlatList
+            data={apiUsers}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.card1}>
+                <View style={styles.info}>
+                  <Image
+                    source={{
+                      uri: `https://i.pravatar.cc/150?u=${item.id}`,
+                    }}
+                    style={{ width: 60, height: 60, borderRadius: 30 }}
                   />
+                  <Text style={styles.name}>{item.name}</Text>
+
+                  <View style={styles.button1}>
+                    <Button
+                      title="View Profile"
+                      onPress={() =>
+                        navigation.navigate('Home', { user: item })
+                      }
+                    />
+                  </View>
                 </View>
               </View>
-            </View>
-          )}
-        />
+            )}
+          />
+        )}
+
+        {/* ================= SECTION LIST (ADDED) ================= */}
+        {!loading && !error && (
+          <>
+            <Text
+              style={[
+                styles.heading,
+                { marginTop: 40, color: isDark ? 'white' : 'black' },
+              ]}
+            >
+              USERS BY CITY
+            </Text>
+
+            <SectionList
+              sections={usersByCity}
+              keyExtractor={(item) => item.id.toString()}
+              renderSectionHeader={({ section }) => (
+                <Text
+                  style={[
+                    styles.heading,
+                    { fontSize: 18, marginBottom: 10,color: isDark ? 'white' : 'black'  },
+                  ]}
+                >
+                  {section.title}
+                </Text>
+              )}
+              renderItem={({ item }) => (
+                <View style={styles.card1}>
+                  <View style={styles.info}>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={{ fontSize: 12, color: 'gray' }}>
+                      {item.email}
+                    </Text>
+                  </View>
+                </View>
+              )}
+            />
+          </>
+        )}
       </ScrollView>
     </ScreenWrapper>
   );
@@ -150,5 +259,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 5,
+  },
+
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
   },
 });
