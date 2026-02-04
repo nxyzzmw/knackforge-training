@@ -1,0 +1,196 @@
+/* RESET LINKS */
+a {
+  text-decoration: none;
+}
+
+/* TOP NAVBAR */
+.top-navbar {
+  background: linear-gradient(180deg, #0f172a, #020617);
+  padding: 6px 16px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+
+.top-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* BRAND */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.brand-text {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* ACTIONS */
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: #cbd5f5;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* PROFILE */
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 4px 6px;
+  line-height: 1;
+}
+
+.profile-btn svg {
+  font-size: 22px;
+}
+
+/* SUB NAV */
+.sub-navbar {
+  background: #0b1220;
+  border-top: 1px solid #1e293b;
+  position: sticky;
+  top: 40px;
+  z-index: 1090;
+ 
+}
+
+.sub-navbar-inner {
+  display: flex;
+  gap: 56px;
+  padding: 6px 16px;
+  overflow-x: auto;
+ 
+}
+
+.sub-link {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+   text-decoration: none;
+}
+
+.sub-link.active {
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+}
+
+body[data-theme='light'] .top-navbar {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+body[data-theme='light'] .sub-navbar {
+  background: #e2e8f0;
+  border-top: 1px solid #cbd5e1;
+}
+
+body[data-theme='light'] .sub-link {
+  color: #475569;
+}
+
+body[data-theme='light'] .sub-link.active {
+  color: #1d4ed8;
+  border-bottom: 2px solid #1d4ed8;
+}
+
+body[data-theme='light'] .icon-btn,
+body[data-theme='light'] .profile-btn {
+  color: #0f172a;
+}
+
+.brand-icon img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.dropdown-menu {
+  margin-top: 6px;
+  z-index: 1050;
+  min-width: 140px;
+  padding: 6px 0;
+}
+
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+.profile-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.profile-avatar svg {
+  font-size: 64px;
+  color: #94a3b8;
+}
+@media (max-width: 768px) {
+  /* Keep normal layout */
+  .top-navbar-inner {
+    justify-content: space-between;
+  }
+
+  /* Reduce spacing between logo, theme, profile */
+  .brand {
+    gap: 6px;              /* was larger */
+  }
+
+  .top-actions {
+    gap: 6px;              /* reduce theme–profile gap */
+    margin-left: 8px;      /* bring actions closer to logo */
+  }
+
+  /* Make icons slightly smaller on mobile */
+  .icon-btn svg,
+  .profile-btn svg {
+    font-size: 20px;
+  }
+
+  /* Hide profile name, keep icon */
+  .profile-name {
+    display: none;
+  }
+
+  /* Reduce navbar padding */
+  .top-navbar {
+    padding: 8px 12px;
+  }
+  .sub-navbar-inner{
+    gap: 40px;
+    padding: 8px 12px;
+  }
+}
+body[data-theme='dark'] .top-navbar {
+  background: #020617;
+  color: #fff;
+}

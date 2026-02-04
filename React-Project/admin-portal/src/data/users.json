@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "Nayeem",
+    "email": "nayeem@admin.com",
+    "role": "Admin",
+    "status": "Active",
+    "joinedDate": "2025-06-15"
+  },
+  {
+    "id": 2,
+    "name": "Arjun Kumar",
+    "email": "arjun@gmail.com",
+    "role": "User",
+    "status": "Active",
+    "joinedDate": "2025-08-10"
+  },
+  {
+    "id": 3,
+    "name": "Sneha R",
+    "email": "sneha@gmail.com",
+    "role": "User",
+    "status": "Active",
+    "joinedDate": "2025-04-22"
+  },
+  {
+    "id": 4,
+    "name": "Rahul Sharma",
+    "email": "rahul@gmail.com",
+    "role": "Admin",
+    "status": "Inactive",
+    "joinedDate": "2024-12-01"
+  },
+  {
+    "id": 5,
+    "name": "Priya Mehta",
+    "email": "priya@gmail.com",
+    "role": "User",
+    "status": "Active",
+    "joinedDate": "2025-01-18"
+  }
+  
+]

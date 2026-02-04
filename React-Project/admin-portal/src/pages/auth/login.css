@@ -1,0 +1,146 @@
+/* Page layout */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-bottom: 64px;
+}
+
+/* Header */
+.login-header {
+  position: absolute;
+  top: 6px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-logo {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.login-brand-text {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  font-size: 20px;
+}
+
+.login-theme-toggle {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.login-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Card */
+.login-card {
+  width: 340px;
+  padding: 28px;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Title */
+.login-title {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  opacity: 0.9;
+}
+
+/* Error */
+.error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+/* ---------------- DARK THEME ---------------- */
+body[data-theme='dark'] .login-page {
+  background: #020617;
+}
+
+body[data-theme='dark'] .login-card {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+body[data-theme='dark'] .login-card input {
+  background: #020617;
+  color: #ffffff;
+  border: 1px solid #1e293b;
+}
+
+body[data-theme='dark'] .login-theme-toggle {
+  color: #e2e8f0;
+  border-color: #1e293b;
+}
+
+/* ---------------- LIGHT THEME ---------------- */
+body[data-theme='light'] .login-page {
+  background: #f8fafc;
+}
+
+body[data-theme='light'] .login-card {
+  background: #ffffff;
+  color: #020617;
+  border: 1px solid #e5e7eb;
+}
+
+body[data-theme='light'] .login-card input {
+  background: #ffffff;
+  color: #020617;
+  border: 1px solid #cbd5f5;
+}
+
+body[data-theme='light'] .login-theme-toggle {
+  color: #0f172a;
+  border-color: #e2e8f0;
+}

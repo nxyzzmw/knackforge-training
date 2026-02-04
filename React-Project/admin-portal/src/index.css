@@ -1,0 +1,30 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  overflow: visible;
+}
+
+body[data-theme='dark'] {
+  background: #020617;
+  color: white;
+}
+
+body[data-theme='light'] {
+  background: #f8fafc;
+  color: #020617;
+}
