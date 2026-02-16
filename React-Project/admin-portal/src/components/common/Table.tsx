@@ -1,28 +1,18 @@
 import type { ReactNode } from "react";
 
-export interface TableColumn<T> {
+export interface SimpleColumn {
   key: string;
   header: string;
-  accessor?: keyof T;
-  render?: (row: T) => ReactNode;
   className?: string;
+  render?: (row: Record<string, string | number>) => ReactNode;
 }
 
-interface TableProps<T> {
-  columns: TableColumn<T>[];
-  data: T[];
-  emptyMessage?: string;
-  rowKey?: (row: T, index: number) => string | number;
+interface SimpleTableProps {
+  columns: SimpleColumn[];
+  data: Array<Record<string, string | number>>;
 }
 
-const Table = <T,>({
-  columns,
-  data,
-  emptyMessage = "No records found",
-  rowKey,
-}: TableProps<T>) => {
-  const getKey = rowKey ?? ((row, index) => (row as { id?: number }).id ?? index);
-
+const Table = ({ columns, data }: SimpleTableProps) => {
   return (
     <table className="data-table">
       <thead>
@@ -36,32 +26,14 @@ const Table = <T,>({
       </thead>
       <tbody>
         {data.map((row, index) => (
-          <tr key={getKey(row, index)}>
-            {columns.map((col) => {
-              const content = col.render
-                ? col.render(row)
-                : col.accessor
-                  ? String(row[col.accessor] ?? "-")
-                  : "-";
-              return (
-                <td
-                  key={col.key}
-                  className={col.className}
-                  data-label={col.header}
-                >
-                  {content}
-                </td>
-              );
-            })}
+          <tr key={index}>
+            {columns.map((col) => (
+              <td key={col.key} className={col.className}>
+                {col.render ? col.render(row) : row[col.key] ?? "-"}
+              </td>
+            ))}
           </tr>
         ))}
-        {data.length === 0 && (
-          <tr>
-            <td colSpan={columns.length} className="empty-row">
-              {emptyMessage}
-            </td>
-          </tr>
-        )}
       </tbody>
     </table>
   );

@@ -3,13 +3,20 @@ a {
   text-decoration: none;
 }
 
+/* Sticky wrapper (all views) */
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+}
+
 /* TOP NAVBAR */
 .top-navbar {
   background: linear-gradient(180deg, #0f172a, #020617);
   padding: 6px 16px;
   color: #fff;
-  position: sticky;
-  top: 0;
+  position: static;
+  top: auto;
   z-index: 1100;
 }
 
@@ -72,8 +79,8 @@ a {
 .sub-navbar {
   background: #0b1220;
   border-top: 1px solid #1e293b;
-  position: sticky;
-  top: 40px;
+  position: static;
+  top: auto;
   z-index: 1090;
  
 }
@@ -188,6 +195,14 @@ body[data-theme='light'] .profile-btn {
   .sub-navbar-inner{
     gap: 40px;
     padding: 8px 12px;
+  }
+}
+
+@media (min-width: 769px) {
+  .top-navbar,
+  .sub-navbar {
+    position: static;
+    top: auto;
   }
 }
 body[data-theme='dark'] .top-navbar {

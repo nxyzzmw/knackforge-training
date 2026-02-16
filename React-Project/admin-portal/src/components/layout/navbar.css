@@ -1,3 +1,10 @@
-.profile-name{
+.profile-name {
     margin-top: 15px;
+}
+
+.top-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bs-body-bg, #fff);
 }

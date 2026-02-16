@@ -18,20 +18,23 @@ const Reports = () => {
   const [statusFilter, setStatusFilter] = useState("All");
 
   const data: ReportItem[] = reports;
+  const isAll = (value: string) => value === "All";
+  const isCompleted = (status: ReportItem["status"]) => status === "Completed";
+  const isPending = (status: ReportItem["status"]) => status === "Pending";
 
   const months = Array.from(new Set(data.map((r) => r.month)));
 
   const filtered = useMemo(() => {
     return data.filter((r) => {
-      const monthMatch = monthFilter === "All" || r.month === monthFilter;
-      const statusMatch = statusFilter === "All" || r.status === statusFilter;
+      const monthMatch = isAll(monthFilter) || r.month === monthFilter;
+      const statusMatch = isAll(statusFilter) || r.status === statusFilter;
       return monthMatch && statusMatch;
     });
   }, [data, monthFilter, statusFilter]);
 
   const totalCount = data.length;
-  const completedCount = data.filter((r) => r.status === "Completed").length;
-  const pendingCount = data.filter((r) => r.status === "Pending").length;
+  const completedCount = data.filter((r) => isCompleted(r.status)).length;
+  const pendingCount = data.filter((r) => isPending(r.status)).length;
 
   const columns: TableColumn<ReportItem>[] = [
     { key: "title", header: "Title", accessor: "title" },
@@ -42,7 +45,7 @@ const Reports = () => {
       render: (row) => (
         <Badge
           label={row.status}
-          variant={row.status === "Completed" ? "completed" : "pending"}
+          variant={isCompleted(row.status) ? "completed" : "pending"}
         />
       ),
     },

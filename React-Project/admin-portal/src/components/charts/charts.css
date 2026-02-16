@@ -4,6 +4,7 @@
   border-radius: 12px;
   padding: 16px;
   flex: 1;
+  overflow: hidden;
 }
 
 .chart-title {
@@ -104,4 +105,15 @@ body[data-theme='dark'] .chart-card {
   background: #0f172a;
   color: #e2e8f0;
   border-color: #1e293b;
+}
+
+@media (max-width: 768px) {
+  .bar-grid {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(60px, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 6px;
+  }
 }

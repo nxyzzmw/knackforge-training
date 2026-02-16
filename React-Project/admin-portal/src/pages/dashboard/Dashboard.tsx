@@ -7,14 +7,18 @@ import PieChart from "../../components/charts/PieChart";
 import BarChart from "../../components/charts/BarChart";
 const Dashboard = () => {
   const { user } = useAuth();
+  const userName = user?.name ?? "User";
+  const isCompleted = (status: string) => status === "Completed";
+  const isPending = (status: string) => status === "Pending";
+  const isActive = (status: string) => status === "Active";
   const totalUsers = users.length;
   const totalReports = reports.length;
-  const activeUsers = users.filter((u) => u.status === "Active").length;
+  const activeUsers = users.filter((u) => isActive(u.status)).length;
 
   const roleCounts = users.reduce(
     (acc, currentUser) => {
-      if (currentUser.role === "Admin") acc.admin += 1;
-      else acc.user += 1;
+      const key = currentUser.role === "Admin" ? "admin" : "user";
+      acc[key] += 1;
       return acc;
     },
     { admin: 0, user: 0 }
@@ -30,8 +34,8 @@ const Dashboard = () => {
     const monthReports = reports.filter((r) => r.month === month);
     return {
       label: month.slice(0, 3),
-      completed: monthReports.filter((r) => r.status === "Completed").length,
-      pending: monthReports.filter((r) => r.status === "Pending").length,
+      completed: monthReports.filter((r) => isCompleted(r.status)).length,
+      pending: monthReports.filter((r) => isPending(r.status)).length,
     };
   });
 
@@ -39,7 +43,7 @@ const Dashboard = () => {
     {
       id: 1,
       action: "Logged in",
-      user: user?.name ?? "User",
+      user: userName,
       time: "10:15 AM",
       status: "Success",
     },
@@ -71,7 +75,7 @@ const Dashboard = () => {
       <div className="title">Dashboard</div>
       <div className="dashboard-container">
         <div className="greeting">
-          <AccountCircleOutlinedIcon /> Welcome, {user?.name ?? "User"}!
+          <AccountCircleOutlinedIcon /> Welcome, {userName}!
         </div>
 
         <div className="summary-grid">

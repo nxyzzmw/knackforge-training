@@ -11,11 +11,9 @@ interface PieChartProps {
   data: PieSlice[];
 }
 
-const PieChart = ({ title, data }: PieChartProps) => {
-  const total = data.reduce((sum, item) => sum + item.value, 0) || 1;
-
+const buildGradientStops = (data: PieSlice[], total: number) => {
   let start = 0;
-  const gradientStops = data
+  return data
     .map((item) => {
       const slice = (item.value / total) * 100;
       const from = start;
@@ -24,6 +22,11 @@ const PieChart = ({ title, data }: PieChartProps) => {
       return `${item.color} ${from}% ${to}%`;
     })
     .join(", ");
+};
+
+const PieChart = ({ title, data }: PieChartProps) => {
+  const total = data.reduce((sum, item) => sum + item.value, 0) || 1;
+  const gradientStops = buildGradientStops(data, total);
 
   return (
     <div className="chart-card">

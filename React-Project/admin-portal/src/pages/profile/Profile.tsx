@@ -17,6 +17,8 @@ const Profile = () => {
       ? users.find((u) => String(u.id) === String(userIdParam)) ?? null
       : null;
   const isViewOnly = !!viewUser || !!userFromQuery;
+  const isUserRole = (role: string) => role === "User";
+  const isActiveStatus = (status: string) => status === "Active";
   const activeUser = useMemo(
     () => viewUser ?? userFromQuery ?? user,
     [viewUser, userFromQuery, user]
@@ -44,7 +46,7 @@ const Profile = () => {
   }, [activeUser]);
 
   const handleChange = (field: keyof typeof draft, value: string) => {
-    if (draft.role === "User" && (field === "role" || field === "joinedDate")) {
+    if (isUserRole(draft.role) && (field === "role" || field === "joinedDate")) {
       return;
     }
     setDraft((prev) => ({ ...prev, [field]: value }));
@@ -103,7 +105,7 @@ const Profile = () => {
             <input
               className="form-control"
               value={draft.role}
-              disabled={isViewOnly || draft.role === "User"}
+              disabled={isViewOnly || isUserRole(draft.role)}
               onChange={(e) => handleChange("role", e.target.value)}
             />
           </div>
@@ -113,7 +115,7 @@ const Profile = () => {
               className="form-control"
               type="date"
               value={draft.joinedDate}
-              disabled={isViewOnly || draft.role === "User"}
+              disabled={isViewOnly || isUserRole(draft.role)}
               onChange={(e) => handleChange("joinedDate", e.target.value)}
             />
           </div>
@@ -122,7 +124,7 @@ const Profile = () => {
               className="form-check-input"
               type="checkbox"
               id="profileStatus"
-              checked={draft.status === "Active"}
+              checked={isActiveStatus(draft.status)}
               disabled={isViewOnly}
               onChange={(e) =>
                 handleChange("status", e.target.checked ? "Active" : "Inactive")

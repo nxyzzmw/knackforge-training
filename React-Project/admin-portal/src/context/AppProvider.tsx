@@ -1,26 +1,35 @@
-import {  useReducer, useEffect } from 'react';
-import type { ReactNode } from 'react';
-import { ThemeContext } from './ThemeContext';
-import { themeReducer, type ThemeAction, type ThemeState } from './ThemeReducer';
-import { AuthContext, type User } from './AuthContext';
-import { authReducer, type AuthAction, type AuthState } from './AuthReducer';
+import { useEffect, useReducer } from "react";
+import type { ReactNode } from "react";
+import { ThemeContext } from "./ThemeContext";
+import { themeReducer, type ThemeAction, type ThemeState } from "./ThemeReducer";
+import { AuthContext, type User } from "./AuthContext";
+import { authReducer, type AuthAction, type AuthState } from "./AuthReducer";
 
-const THEME_STORAGE_KEY = 'theme';
-const AUTH_STORAGE_KEY = 'auth_user';
+const THEME_STORAGE_KEY = "theme";
+const AUTH_STORAGE_KEY = "auth_user";
+
+const getStoredTheme = () =>
+  (localStorage.getItem(THEME_STORAGE_KEY) as "dark" | "light") || "dark";
+
+const getStoredUser = (): User | null => {
+  const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
+  return storedUser ? JSON.parse(storedUser) : null;
+};
+
+const saveUser = (user: User) =>
+  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
   // THEME
   const [themeState, themeDispatch] = useReducer<ThemeState, ThemeAction>(
     themeReducer,
     {
-      theme:
-        (localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark',
+      theme: getStoredTheme(),
     }
   );
 
   // AUTH
-  const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
-  const parsedUser: User | null = storedUser ? JSON.parse(storedUser) : null;
+  const parsedUser = getStoredUser();
 
   const [authState, authDispatch] = useReducer<AuthState, AuthAction>(
     authReducer,
@@ -33,22 +42,22 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
   const toggleTheme = () => themeDispatch({ type: 'TOGGLE_THEME' });
 
   const login = (user: User) => {
-    authDispatch({ type: 'LOGIN', payload: user });
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+    authDispatch({ type: "LOGIN", payload: user });
+    saveUser(user);
   };
 
   const logout = () => {
-    authDispatch({ type: 'LOGOUT' });
+    authDispatch({ type: "LOGOUT" });
     localStorage.removeItem(AUTH_STORAGE_KEY);
   };
 
   const updateUser = (user: User) => {
-    authDispatch({ type: 'UPDATE_USER', payload: user });
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+    authDispatch({ type: "UPDATE_USER", payload: user });
+    saveUser(user);
   };
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', themeState.theme);
+    document.body.setAttribute("data-theme", themeState.theme);
     localStorage.setItem(THEME_STORAGE_KEY, themeState.theme);
   }, [themeState.theme]);
 
